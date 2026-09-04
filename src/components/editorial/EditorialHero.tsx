@@ -5,53 +5,28 @@ import {
   Landmark,
   Network,
 } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 
-const leadStory = {
-  category: 'Khazanah Kebangsaan',
-  title:
-    'Gus Kikin: Meneguhkan Nilai Moderasi Beragama dan Kemandirian Ekonomi Pesantren Abad Kedua NU',
-  excerpt:
-    'Dalam lawatan halaqah peradaban, Pengasuh Pesantren Tebuireng menggarisbawahi pentingnya gerakan santri yang berakar pada tradisi keilmuan dan tanggap terhadap perubahan zaman.',
-  href: '/berita',
-  image:
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuAzKU-42Q0m53oqi9tFZGo_HqVDFyGvsSzc_v00Kf1TtY3WHwXcqrruu2hMB12d_fcvOeLjkGu1QleBO01KlF-Ha7w2VZydW5I_fyI2BLZpyuXYeL7ofrDSQjU9tznqX0AH4eKcUetjjZ7G7qmHipU81p-epSptFrcwbaZSwhRMa9UJ_1HEqsD5W52aj6EmGLs2gwphttmO38xSLpZBNj4uzv2d7mYzJk_Xx17Vr9LW14NKQAm9wJFt',
-  imageAlt: 'Gus Kikin menyampaikan kajian di hadapan para santri',
-  author: 'Tim Redaksi Khazanah Tebuireng',
-  publishedAt: '2024-10-24',
-  publishedLabel: '22 Rabiul Awal 1446 H',
-  readingTime: '5 menit baca',
-}
+import { ArticleImage } from '@/components/articles/ArticleImage'
+import { formatArticleDate, getAuthors, getCategory } from '@/lib/articles'
+import type { Post } from '@/payload-types'
 
-const supportingStories = [
-  {
-    category: 'Tebuireng Heritage',
-    readingTime: '4 menit baca',
-    title: 'Pesan Mendalam Pengasuh Tebuireng dalam Menjaga Sanad Keilmuan Para Masyayikh',
-    excerpt: 'Keotentikan sanad adalah benteng nurani santri agar tidak tercerabut dari adab ulama terdahulu.',
-    href: '/khazanah',
-    Icon: BookOpenText,
-  },
-  {
-    category: 'Opini & Wacana',
-    readingTime: '6 menit baca',
-    title: 'Optimalisasi Potensi Santri di Era Transformasi Digital Tanpa Kehilangan Jati Diri',
-    excerpt: 'Transformasi digital adalah instrumen syiar, bukan tujuan yang menggeser akar keilmuan pesantren.',
-    href: '/berita',
-    Icon: Network,
-  },
-  {
-    category: 'Refleksi Moral',
-    readingTime: '3 menit baca',
-    title: 'Menjaga Kejujuran dan Keteladanan di Tengah Perubahan Zaman',
-    excerpt: 'Refleksi kepemimpinan berbasis akhlak yang tetap relevan untuk membaca tantangan hari ini.',
-    href: '/dawuh',
-    Icon: Landmark,
-  },
-] as const
+const supportingIcons = [BookOpenText, Network, Landmark] as const
 
-export function EditorialHero() {
+export function EditorialHero({
+  leadStory,
+  supportingStories,
+}: {
+  leadStory: Post | null
+  supportingStories: Post[]
+}) {
+  if (!leadStory) return null
+
+  const category = getCategory(leadStory)?.title || 'Artikel Pilihan'
+  const author = getAuthors(leadStory)[0]?.name || 'Tim Redaksi guskikin.id'
+  const href = `/berita/${leadStory.slug}`
+  const readingTime = `${leadStory.readingTime || 5} menit baca`
+
   return (
     <section
       aria-labelledby="editorial-hero-title"
@@ -73,32 +48,31 @@ export function EditorialHero() {
         <div className="grid items-start gap-space-xl lg:grid-cols-12">
           <article className="overflow-hidden rounded-lg border border-border/65 bg-surface-container-lowest shadow-[0_12px_35px_rgba(23,74,55,0.06)] lg:col-span-7">
             <Link
-              href={leadStory.href}
+              href={href}
               aria-label={`Baca: ${leadStory.title}`}
               className="group/image relative block aspect-video overflow-hidden bg-surface-container-low focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
             >
-              <Image
+              <ArticleImage
                 className="object-cover transition-transform duration-500 motion-safe:group-hover/image:scale-[1.025]"
-                src={leadStory.image}
-                alt={leadStory.imageAlt}
-                fill
+                fallback
+                image={leadStory.featuredImage}
                 sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), 720px"
-                preload
+                priority
               />
 
               <span className="absolute left-space-md top-space-md rounded-md bg-secondary px-space-sm py-1.5 font-label-sm text-label-sm font-bold uppercase tracking-[0.08em] text-secondary-foreground shadow-sm">
-                {leadStory.category}
+                {category}
               </span>
 
               <span className="absolute bottom-space-sm right-space-sm inline-flex items-center gap-1.5 rounded-md bg-white/95 px-space-sm py-1.5 font-label-sm text-label-sm font-semibold text-primary shadow-sm">
                 <Clock3 className="size-3.5" aria-hidden="true" />
-                {leadStory.readingTime}
+                {readingTime}
               </span>
             </Link>
 
             <div className="p-space-lg sm:p-space-xl">
               <Link
-                href={leadStory.href}
+                href={href}
                 className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
               >
                 <h1
@@ -118,9 +92,11 @@ export function EditorialHero() {
                   <span className="grid size-7 place-items-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
                     TK
                   </span>
-                  {leadStory.author}
+                  {author}
                 </span>
-                <time dateTime={leadStory.publishedAt}>{leadStory.publishedLabel}</time>
+                <time dateTime={leadStory.publishedAt || leadStory.createdAt}>
+                  {formatArticleDate(leadStory.publishedAt || leadStory.createdAt)}
+                </time>
               </div>
             </div>
           </article>
@@ -149,9 +125,13 @@ export function EditorialHero() {
             </div>
 
             <div className="overflow-hidden rounded-lg border border-border/65 bg-surface-container-lowest shadow-[0_12px_35px_rgba(23,74,55,0.04)]">
-              {supportingStories.map(({ Icon, ...story }, index) => (
-                <article
-                  key={story.title}
+              {supportingStories.map((story, index) => {
+                const Icon = supportingIcons[index % supportingIcons.length]
+                const storyCategory = getCategory(story)?.title || 'Khazanah'
+
+                return (
+                  <article
+                  key={story.id}
                   className="group grid grid-cols-[2rem_minmax(0,1fr)_3.75rem] gap-space-sm border-b border-border/65 p-space-md last:border-b-0 sm:grid-cols-[2.25rem_minmax(0,1fr)_4.5rem] sm:gap-space-md sm:p-space-lg"
                 >
                   <span
@@ -164,16 +144,16 @@ export function EditorialHero() {
                   <div className="min-w-0">
                     <div className="mb-space-xs flex flex-wrap items-center gap-x-space-xs gap-y-1 font-label-sm text-label-sm">
                       <span className="rounded-full bg-surface-container px-space-xs py-0.5 font-bold text-primary">
-                        {story.category}
+                        {storyCategory}
                       </span>
                       <span className="inline-flex items-center gap-1 text-text-body">
                         <Clock3 className="size-3" aria-hidden="true" />
-                        {story.readingTime}
+                        {story.readingTime || 5} menit baca
                       </span>
                     </div>
 
                     <Link
-                      href={story.href}
+                      href={`/berita/${story.slug}`}
                       className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
                     >
                       <h3 className="font-headline-sm text-[1.05rem] font-semibold leading-snug text-text-headline transition-colors group-hover:text-primary sm:text-[1.12rem]">
@@ -189,8 +169,9 @@ export function EditorialHero() {
                   <div className="grid aspect-square place-items-center self-start rounded-md border border-border/70 bg-surface-container-low text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <Icon className="size-5" strokeWidth={1.75} aria-hidden="true" />
                   </div>
-                </article>
-              ))}
+                  </article>
+                )
+              })}
             </div>
           </aside>
         </div>

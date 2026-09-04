@@ -2,43 +2,19 @@ import { Clock3, Newspaper } from 'lucide-react'
 import Link from 'next/link'
 
 import { SectionHeading } from '@/components/shared/SectionHeading'
+import { getCategory } from '@/lib/articles'
+import type { Post } from '@/payload-types'
 
-const categories = ['Terbaru', 'PBNU', 'Tebuireng', 'Kebangsaan', 'Opini', 'Dakwah'] as const
+export function LatestNewsSection({ stories }: { stories: Post[] }) {
+  if (!stories.length) return null
 
-const stories = [
-  {
-    category: 'Tebuireng',
-    title: 'Pesantren sebagai Ruang Tumbuh Ilmu, Akhlak, dan Kemandirian Generasi Muda',
-    excerpt:
-      'Catatan redaksi mengenai peran pesantren dalam merawat tradisi sekaligus menjawab kebutuhan masyarakat yang terus berubah.',
-    readingTime: '5 menit baca',
-    href: '/berita',
-  },
-  {
-    category: 'Kebangsaan',
-    title: 'Merawat Dialog Keumatan di Tengah Perubahan Sosial yang Bergerak Cepat',
-    excerpt: 'Ruang temu menjadi penting agar perbedaan dapat dikelola dengan adab dan kejernihan berpikir.',
-    readingTime: '4 menit baca',
-    href: '/berita',
-  },
-  {
-    category: 'Pendidikan',
-    title: 'Membaca Ulang Peran Santri dalam Ekosistem Pengetahuan Digital',
-    excerpt: 'Literasi digital perlu tumbuh beriringan dengan ketelitian sumber dan tanggung jawab keilmuan.',
-    readingTime: '6 menit baca',
-    href: '/khazanah',
-  },
-  {
-    category: 'Dakwah',
-    title: 'Dakwah yang Meneduhkan Berangkat dari Keteladanan Sehari-hari',
-    excerpt: 'Pesan yang baik memperoleh daya hidupnya dari sikap, konsistensi, dan kepekaan sosial.',
-    readingTime: '3 menit baca',
-    href: '/dawuh',
-  },
-] as const
-
-export function LatestNewsSection() {
   const [featuredStory, ...compactStories] = stories
+  const categories = [
+    'Terbaru',
+    ...Array.from(
+      new Set(stories.map((story) => getCategory(story)?.title).filter(Boolean)),
+    ),
+  ]
 
   return (
     <section aria-labelledby="latest-news-title" className="bg-surface-container-lowest py-space-3xl">
@@ -76,9 +52,9 @@ export function LatestNewsSection() {
             <div className="relative flex min-h-80 flex-col justify-between">
               <div>
                 <span className="inline-flex rounded-full bg-white/10 px-space-sm py-1 font-label-sm text-label-sm font-bold uppercase tracking-[0.1em] text-[#f5bd66]">
-                  {featuredStory.category}
+                  {getCategory(featuredStory)?.title || 'Artikel'}
                 </span>
-                <Link href={featuredStory.href} className="mt-space-lg block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-primary">
+                <Link href={`/berita/${featuredStory.slug}`} className="mt-space-lg block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-primary">
                   <h3 className="max-w-[18ch] font-headline-lg text-[clamp(1.75rem,3.3vw,2.7rem)] font-bold leading-[1.12] tracking-[-0.02em] transition-colors hover:text-[#f5bd66]">
                     {featuredStory.title}
                   </h3>
@@ -89,7 +65,7 @@ export function LatestNewsSection() {
               </div>
               <span className="mt-space-xl inline-flex items-center gap-space-xs font-label-sm text-label-sm text-white/65">
                 <Clock3 className="size-4" aria-hidden="true" />
-                {featuredStory.readingTime}
+                {featuredStory.readingTime || 5} menit baca
               </span>
             </div>
           </article>
@@ -102,9 +78,9 @@ export function LatestNewsSection() {
                 </span>
                 <div>
                   <span className="font-label-sm text-label-sm font-bold uppercase tracking-[0.1em] text-primary">
-                    {story.category}
+                  {getCategory(story)?.title || 'Artikel'}
                   </span>
-                  <Link href={story.href} className="mt-1 block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4">
+                  <Link href={`/berita/${story.slug}`} className="mt-1 block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4">
                     <h3 className="font-headline-sm text-[1.25rem] font-semibold leading-snug text-text-headline transition-colors group-hover:text-primary sm:text-[1.45rem]">
                       {story.title}
                     </h3>
@@ -113,7 +89,7 @@ export function LatestNewsSection() {
                 </div>
                 <span className="inline-flex items-center gap-1 self-start font-label-sm text-label-sm text-text-body sm:justify-self-end">
                   <Clock3 className="size-3.5" aria-hidden="true" />
-                  {story.readingTime}
+                  {story.readingTime || 5} menit baca
                 </span>
               </article>
             ))}
