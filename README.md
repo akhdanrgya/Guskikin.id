@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# guskikin.id
 
-## Getting Started
+Platform editorial Gus Kikin yang menggabungkan portal berita, arsip khazanah,
+dawuh, agenda dakwah, media audiovisual, dan pengelolaan konten melalui Payload
+CMS. Arah produk dan keputusan engineering utama dijelaskan di
+`ANTIGRAVITY_GUS_KIKIN_MASTER_SPEC.md`.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 App Router dan React Server Components
+- TypeScript strict mode
+- Payload CMS 3 dengan PostgreSQL
+- Cloudflare R2 atau penyimpanan S3-compatible
+- Tailwind CSS 4 dan shadcn/ui
+
+## Menjalankan proyek
+
+Gunakan Node.js 22 LTS dan pnpm yang tercantum di `package.json`.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env
+pnpm generate:types
+pnpm generate:importmap
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Frontend tersedia di `http://localhost:3000` dan panel Payload di
+`http://localhost:3000/admin`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Isi seluruh kredensial melalui `.env`; jangan menyimpan secret di source code.
+Variabel yang dibutuhkan tersedia di `.env.example`:
 
-## Learn More
+- `DATABASE_URI` untuk PostgreSQL
+- `PAYLOAD_SECRET` untuk autentikasi Payload
+- `NEXT_PUBLIC_SITE_URL` untuk URL kanonis aplikasi
+- `S3_*` untuk bucket R2/S3-compatible
+- `NEXT_PUBLIC_GA_ID` untuk analytics opsional
 
-To learn more about Next.js, take a look at the following resources:
+## Quality checks
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm lint
+pnpm typecheck
+pnpm build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`src/payload-types.ts` dan `src/app/(payload)/admin/importMap.js` merupakan
+artefak resmi Payload. Regenerasikan keduanya setiap kali schema atau komponen
+admin berubah.
 
-## Deploy on Vercel
+## Struktur utama
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app/(frontend)` berisi route dan layout publik.
+- `src/app/(payload)` berisi admin panel dan REST API Payload.
+- `src/collections` berisi schema collection editorial.
+- `src/globals` berisi konfigurasi global situs dan homepage.
+- `src/components` berisi komponen UI yang dapat digunakan kembali.
