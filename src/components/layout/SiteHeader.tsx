@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Menu, Search, X } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const HIJRI_MONTHS = [
   'Muharam',
@@ -114,7 +115,12 @@ export const SiteHeader = ({ initialNow, latestArticle }: SiteHeaderProps) => {
   }
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-cream-bg/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <motion.header
+      animate={{ opacity: 1, y: 0 }}
+      className="fixed top-0 w-full z-50 bg-cream-bg/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+      initial={{ opacity: 0, y: -28 }}
+      transition={{ damping: 24, stiffness: 220, type: 'spring' }}
+    >
       <div className="w-full bg-surface-container-low">
         <div className="mx-auto flex h-10 max-w-container-max items-center justify-between px-gutter-mobile font-label-sm text-label-sm text-on-surface-variant sm:px-gutter-tablet lg:px-gutter-desktop">
           <div className="flex items-center gap-space-md">
@@ -138,15 +144,16 @@ export const SiteHeader = ({ initialNow, latestArticle }: SiteHeaderProps) => {
             </div>
           </div>
           <div className="flex items-center gap-space-lg">
-            <button
+            <motion.button
               aria-label="Buka pencarian global"
               className="flex items-center gap-1.5 rounded-lg p-1.5 transition-colors hover:bg-white hover:text-primary sm:px-2"
               onClick={openSearch}
               type="button"
+              whileTap={{ scale: 0.94 }}
             >
               <Search aria-hidden="true" className="size-4" />
               <span className="hidden sm:inline">Cari Arsip</span>
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
@@ -180,7 +187,7 @@ export const SiteHeader = ({ initialNow, latestArticle }: SiteHeaderProps) => {
           >
             Kutipan Hari Ini
           </Link>
-          <button
+          <motion.button
             aria-controls="mobile-navigation"
             aria-expanded={isMobileMenuOpen}
             aria-label={isMobileMenuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
@@ -190,48 +197,66 @@ export const SiteHeader = ({ initialNow, latestArticle }: SiteHeaderProps) => {
               setMobileMenuOpen((open) => !open)
             }}
             type="button"
+            whileTap={{ scale: 0.92 }}
           >
             {isMobileMenuOpen ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
-          </button>
+          </motion.button>
         </div>
       </div>
 
-      {isMobileMenuOpen ? (
-        <div className="absolute left-0 top-full w-full border-t border-border bg-cream-bg shadow-[0_16px_30px_rgba(15,23,42,0.12)] xl:hidden" id="mobile-navigation">
-          <nav aria-label="Navigasi mobile" className="mx-auto max-w-container-max px-gutter-mobile py-4 sm:px-gutter-tablet">
-            <div className="grid gap-1">
-              {NAV_ITEMS.map((item) => {
-                const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(`${item.href}/`))
+      <AnimatePresence>
+        {isMobileMenuOpen ? (
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            className="absolute left-0 top-full w-full border-t border-border bg-cream-bg shadow-[0_16px_30px_rgba(15,23,42,0.12)] xl:hidden"
+            exit={{ opacity: 0, y: -14 }}
+            id="mobile-navigation"
+            initial={{ opacity: 0, y: -14 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <nav aria-label="Navigasi mobile" className="mx-auto max-w-container-max px-gutter-mobile py-4 sm:px-gutter-tablet">
+              <div className="grid gap-1">
+                {NAV_ITEMS.map((item, index) => {
+                  const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(`${item.href}/`))
 
-                return (
-                  <Link
-                    aria-current={active ? 'page' : undefined}
-                    className={`rounded-xl px-4 py-3 font-label-md text-label-md font-bold transition-colors ${active ? 'bg-primary text-white' : 'text-on-surface hover:bg-surface-container-low'}`}
-                    href={item.href}
-                    key={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              })}
-            </div>
-            <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-3">
-              <button className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary px-3 font-label-sm text-label-sm font-bold text-white" onClick={openSearch} type="button">
-                <Search aria-hidden="true" className="size-4" /> Cari
-              </button>
-              <Link className="inline-flex min-h-11 items-center justify-center rounded-xl border border-border bg-white px-3 font-label-sm text-label-sm font-bold text-primary" href="/dawuh" onClick={() => setMobileMenuOpen(false)}>
-                Kutipan Hari Ini
-              </Link>
-            </div>
-          </nav>
-        </div>
-      ) : null}
+                  return (
+                    <motion.div animate={{ opacity: 1, x: 0 }} initial={{ opacity: 0, x: -12 }} key={item.href} transition={{ delay: index * 0.035 }}>
+                      <Link
+                        aria-current={active ? 'page' : undefined}
+                        className={`block rounded-xl px-4 py-3 font-label-md text-label-md font-bold transition-colors ${active ? 'bg-primary text-white' : 'text-on-surface hover:bg-surface-container-low'}`}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  )
+                })}
+              </div>
+              <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-3">
+                <motion.button className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary px-3 font-label-sm text-label-sm font-bold text-white" onClick={openSearch} type="button" whileTap={{ scale: 0.96 }}>
+                  <Search aria-hidden="true" className="size-4" /> Cari
+                </motion.button>
+                <Link className="inline-flex min-h-11 items-center justify-center rounded-xl border border-border bg-white px-3 font-label-sm text-label-sm font-bold text-primary" href="/dawuh" onClick={() => setMobileMenuOpen(false)}>
+                  Kutipan Hari Ini
+                </Link>
+              </div>
+            </nav>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
-      {isSearchOpen ? (
-        <div aria-labelledby="global-search-title" aria-modal="true" className="fixed inset-0 z-[70] px-gutter-mobile pt-20 sm:px-gutter-tablet sm:pt-28" role="dialog">
-          <button aria-label="Tutup pencarian" className="absolute inset-0 bg-emerald-deep/70 backdrop-blur-sm" onClick={() => setSearchOpen(false)} type="button" />
-          <div className="relative mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/20 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
+      <AnimatePresence>
+        {isSearchOpen ? (
+          <motion.div animate={{ opacity: 1 }} aria-labelledby="global-search-title" aria-modal="true" className="fixed inset-0 z-[70] px-gutter-mobile pt-20 sm:px-gutter-tablet sm:pt-28" exit={{ opacity: 0 }} initial={{ opacity: 0 }} role="dialog">
+            <motion.button animate={{ opacity: 1 }} aria-label="Tutup pencarian" className="absolute inset-0 bg-emerald-deep/70 backdrop-blur-sm" initial={{ opacity: 0 }} onClick={() => setSearchOpen(false)} type="button" />
+            <motion.div
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              className="relative mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/20 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.3)]"
+              exit={{ opacity: 0, scale: 0.97, y: -16 }}
+              initial={{ opacity: 0, scale: 0.97, y: -16 }}
+              transition={{ damping: 25, stiffness: 260, type: 'spring' }}
+            >
             <div className="flex items-start justify-between gap-4 border-b border-border p-5 sm:p-6">
               <div>
                 <p className="font-label-sm text-label-sm font-bold uppercase tracking-[0.12em] text-secondary">Pencarian Global</p>
@@ -252,9 +277,10 @@ export const SiteHeader = ({ initialNow, latestArticle }: SiteHeaderProps) => {
                 <button className="min-h-11 rounded-xl bg-primary px-6 font-label-sm text-label-sm font-bold text-white transition-colors hover:bg-emerald-deep" type="submit">Tampilkan hasil</button>
               </div>
             </form>
-          </div>
-        </div>
-      ) : null}
-    </header>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </motion.header>
   )
 }
