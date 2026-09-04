@@ -32,8 +32,11 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     components: {
+      beforeDashboard: ['/components/admin/AdminDashboardHero'],
       beforeLogin: ['/components/admin/AuthIntro'],
+      beforeNavLinks: ['/components/admin/AdminNavBrand'],
       graphics: {
+        Icon: '/components/admin/AdminIcon',
         Logo: '/components/admin/AuthLogo',
       },
     },

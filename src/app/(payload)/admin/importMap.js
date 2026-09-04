@@ -21,8 +21,11 @@ import { StrikethroughFeatureClient as StrikethroughFeatureClient_e70f5e05f09f93
 import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
+import { default as default_7be396d0766c6c490887ef074dd0ced4 } from '../../../components/admin/AdminIcon'
 import { default as default_8055bd7736744752729e7ab1604a1aa1 } from '../../../components/admin/AuthLogo'
+import { default as default_15ef46a6b2a1b616dc4cfedeac84ecc8 } from '../../../components/admin/AdminDashboardHero'
 import { default as default_be0283a400c16646fc25a15eec3a2887 } from '../../../components/admin/AuthIntro'
+import { default as default_3b9102a18ec996334808b39c4a5eac76 } from '../../../components/admin/AdminNavBrand'
 import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
@@ -51,8 +54,11 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "/components/admin/AdminIcon#default": default_7be396d0766c6c490887ef074dd0ced4,
   "/components/admin/AuthLogo#default": default_8055bd7736744752729e7ab1604a1aa1,
+  "/components/admin/AdminDashboardHero#default": default_15ef46a6b2a1b616dc4cfedeac84ecc8,
   "/components/admin/AuthIntro#default": default_be0283a400c16646fc25a15eec3a2887,
+  "/components/admin/AdminNavBrand#default": default_3b9102a18ec996334808b39c4a5eac76,
   "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

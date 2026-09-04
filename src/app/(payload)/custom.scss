@@ -300,3 +300,479 @@
     }
   }
 }
+
+@layer payload {
+  .template-default {
+    --theme-bg: #f7f5ef;
+    --theme-bg-color: #f7f5ef;
+    --theme-input-bg: #ffffff;
+    --theme-text: #17211c;
+    --theme-border-color: #dedcd5;
+    --theme-elevation-0: #ffffff;
+    --theme-elevation-50: #fbfaf7;
+    --theme-elevation-100: #efede6;
+    --theme-elevation-150: #e8e5dc;
+    --theme-elevation-200: #dedcd5;
+    --theme-elevation-250: #cfcdc5;
+    --theme-elevation-300: #b7b5ae;
+    --theme-elevation-400: #7d817c;
+    --theme-elevation-500: #64748b;
+    --theme-elevation-600: #475569;
+    --theme-elevation-700: #334155;
+    --theme-elevation-800: #174a37;
+    --theme-elevation-900: #0f5132;
+    --theme-elevation-950: #0b3b26;
+    --theme-elevation-1000: #071f15;
+    --font-body: var(--font-jakarta, "Plus Jakarta Sans"), "Segoe UI", sans-serif;
+    --font-serif: var(--font-playfair, "Playfair Display"), Georgia, serif;
+    --style-radius-s: 6px;
+    --style-radius-m: 8px;
+    --style-radius-l: 10px;
+    --accessibility-outline: 2px solid #d97706;
+    --accessibility-outline-offset: 3px;
+
+    min-height: 100vh;
+    color-scheme: light;
+    background: #f7f5ef;
+  }
+
+  .template-default .nav {
+    --theme-text: #ffffff;
+    --theme-elevation-0: #0b3b26;
+    --theme-elevation-50: #124b32;
+    --theme-elevation-100: #1b5b40;
+    --theme-elevation-150: #256649;
+    --theme-elevation-200: #4f8069;
+    --theme-elevation-300: #79a08c;
+    --theme-elevation-400: #b5cebf;
+    --theme-elevation-500: #d7e5dc;
+    --theme-elevation-600: #e4eee8;
+    --theme-elevation-700: #edf5f0;
+    --theme-elevation-800: #f5faf7;
+    --theme-elevation-900: #ffffff;
+    --theme-elevation-950: #ffffff;
+    --theme-elevation-1000: #ffffff;
+
+    border: 0;
+    background: #0b3b26;
+    color: #ffffff;
+    box-shadow: 1px 0 0 rgb(255 255 255 / 8%);
+  }
+
+  .template-default .nav__scroll {
+    scrollbar-color: rgb(255 255 255 / 20%) transparent;
+  }
+
+  .template-default .nav-group {
+    margin-bottom: 1.1rem;
+  }
+
+  .template-default .nav-group__toggle {
+    margin-bottom: 0.35rem;
+    color: #d7e5dc;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .template-default .nav-group__toggle:hover,
+  .template-default .nav-group__toggle:focus-visible {
+    color: #ffffff;
+  }
+
+  .template-default .nav__link {
+    margin: 0.08rem 0;
+    padding: 0.34rem 0.55rem;
+    border-radius: 5px;
+    color: #edf5f0;
+    font-size: 0.84rem;
+    line-height: 1.35;
+    transition:
+      color 120ms ease,
+      background-color 120ms ease;
+  }
+
+  .template-default .nav a.nav__link:hover,
+  .template-default .nav a.nav__link:focus-visible,
+  .template-default .nav__link:has(.nav__link-indicator) {
+    background: rgb(255 255 255 / 10%);
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .template-default .nav__link-indicator {
+    inset-inline-start: -0.5rem;
+    width: 3px;
+    height: 1.25rem;
+    background: #d97706;
+  }
+
+  .template-default .nav__controls {
+    width: 100%;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(255 255 255 / 12%);
+  }
+
+  .guskikin-admin-brand {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0 0 1.8rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgb(255 255 255 / 12%);
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .guskikin-admin-brand:hover,
+  .guskikin-admin-brand:focus-visible {
+    color: #ffffff;
+  }
+
+  .guskikin-admin-brand__mark,
+  .guskikin-admin-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #0f5132;
+    font-family: var(--font-body);
+    font-weight: 850;
+    letter-spacing: 0.05em;
+    box-shadow: inset 0 -3px 0 #d97706;
+  }
+
+  .guskikin-admin-brand__mark {
+    width: 2.35rem;
+    height: 2.35rem;
+    font-size: 0.65rem;
+  }
+
+  .guskikin-admin-brand__copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .guskikin-admin-brand__copy strong {
+    font-family: var(--font-serif);
+    font-size: 1.12rem;
+    line-height: 1;
+  }
+
+  .guskikin-admin-brand__copy small {
+    color: #e6ad63;
+    font-size: 0.58rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .guskikin-admin-icon {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    background: #0f5132;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.38rem;
+    line-height: 1;
+    box-shadow: inset 0 -2px 0 #d97706;
+  }
+
+  .template-default .step-nav__home > span {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    overflow: visible;
+  }
+
+  .template-default .app-header {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #e6e2d8;
+    background: rgb(253 251 247 / 92%);
+    backdrop-filter: blur(14px);
+  }
+
+  .template-default .app-header__account {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border: 1px solid #d8d5cb;
+    border-radius: 50%;
+    background: #ffffff;
+  }
+
+  .template-default .step-nav {
+    color: #64748b;
+    font-size: 0.78rem;
+    font-weight: 650;
+  }
+
+  .template-default .btn--style-primary {
+    --color: #ffffff;
+    --bg-color: #0f5132;
+    --hover-bg: #0b3b26;
+    --hover-color: #ffffff;
+  }
+
+  .template-default .btn--style-secondary {
+    --color: #0f5132;
+    --btn-border: 1px solid #0f5132;
+    --hover-color: #0b3b26;
+    --hover-btn-border: 1px solid #0b3b26;
+  }
+
+  .guskikin-dashboard-hero {
+    position: relative;
+    overflow: hidden;
+    margin: 1.4rem 0 2rem;
+    border: 1px solid rgb(15 81 50 / 15%);
+    border-radius: 10px;
+    background:
+      radial-gradient(circle at 88% 0%, rgb(255 255 255 / 12%), transparent 28%),
+      #0f5132;
+    color: #ffffff;
+    box-shadow: 0 18px 50px rgb(15 81 50 / 12%);
+  }
+
+  .guskikin-dashboard-hero::after {
+    content: "GK";
+    position: absolute;
+    top: -2.5rem;
+    right: 1.5rem;
+    color: rgb(255 255 255 / 4%);
+    font-family: var(--font-serif);
+    font-size: clamp(8rem, 18vw, 16rem);
+    font-weight: 700;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .guskikin-dashboard-hero__header {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.32fr);
+    gap: 3rem;
+    align-items: end;
+    padding: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .guskikin-dashboard-hero__copy {
+    max-width: 48rem;
+  }
+
+  .guskikin-dashboard-hero__eyebrow {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: #f0b76e;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .guskikin-dashboard-hero h1 {
+    max-width: 46rem;
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 5vw, 4.8rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  .guskikin-dashboard-hero__copy p {
+    max-width: 42rem;
+    margin: 1rem 0 0;
+    color: #dcebe2;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .guskikin-dashboard-hero__identity {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid #d97706;
+  }
+
+  .guskikin-dashboard-hero__identity span,
+  .guskikin-dashboard-hero__identity small {
+    color: #bcd1c5;
+    font-size: 0.65rem;
+  }
+
+  .guskikin-dashboard-hero__identity strong {
+    overflow: hidden;
+    color: #ffffff;
+    font-size: 0.78rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .guskikin-dashboard-actions {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid rgb(255 255 255 / 14%);
+    background: rgb(4 42 26 / 28%);
+  }
+
+  .guskikin-dashboard-actions__item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.8rem;
+    align-items: start;
+    padding: 1.35rem clamp(1rem, 2vw, 1.7rem);
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 140ms ease;
+  }
+
+  .guskikin-dashboard-actions__item + .guskikin-dashboard-actions__item {
+    border-left: 1px solid rgb(255 255 255 / 14%);
+  }
+
+  .guskikin-dashboard-actions__item:hover,
+  .guskikin-dashboard-actions__item:focus-visible {
+    background: rgb(255 255 255 / 9%);
+    color: #ffffff;
+  }
+
+  .guskikin-dashboard-actions__index {
+    color: #e7a958;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+  }
+
+  .guskikin-dashboard-actions__content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+
+  .guskikin-dashboard-actions__content strong {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .guskikin-dashboard-actions__content small {
+    color: #bcd1c5;
+    font-size: 0.64rem;
+    line-height: 1.5;
+  }
+
+  .guskikin-dashboard-actions__arrow {
+    color: #f0b76e;
+    font-size: 1rem;
+  }
+
+  .template-default .dashboard .collections {
+    --cols: 3;
+  }
+
+  .template-default .dashboard .collections__label {
+    color: #0f5132;
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .template-default .dashboard .collections__card-list {
+    gap: 0.85rem;
+  }
+
+  .template-default .dashboard .card {
+    min-height: 7.25rem;
+    padding: 1.15rem;
+    border: 1px solid #e1ded5;
+    border-top: 3px solid #0f5132;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgb(15 23 42 / 4%);
+  }
+
+  .template-default .dashboard .card--has-onclick:hover {
+    border-color: #b9cbbf;
+    border-top-color: #d97706;
+    background: #fffefb;
+    box-shadow: 0 12px 30px rgb(15 81 50 / 9%);
+    transform: translateY(-1px);
+  }
+
+  .template-default .dashboard .card__title {
+    color: #173b2c;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .template-default .dashboard .widget-content {
+    border-radius: 8px;
+  }
+
+  .template-default input,
+  .template-default textarea,
+  .template-default select,
+  .template-default .rs__control {
+    border-radius: 6px;
+  }
+
+  @media (max-width: 1024px) {
+    .guskikin-dashboard-hero__header {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .guskikin-dashboard-hero__identity {
+      max-width: 28rem;
+    }
+
+    .template-default .dashboard .collections {
+      --cols: 2;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .guskikin-dashboard-hero {
+      margin-top: 0.75rem;
+    }
+
+    .guskikin-dashboard-hero__header {
+      padding: 1.65rem;
+    }
+
+    .guskikin-dashboard-hero h1 {
+      font-size: clamp(2.2rem, 12vw, 3.4rem);
+    }
+
+    .guskikin-dashboard-actions {
+      grid-template-columns: 1fr;
+    }
+
+    .guskikin-dashboard-actions__item + .guskikin-dashboard-actions__item {
+      border-top: 1px solid rgb(255 255 255 / 14%);
+      border-left: 0;
+    }
+
+    .template-default .dashboard .collections {
+      --cols: 1;
+    }
+  }
+}
