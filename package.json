@@ -10,7 +10,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types"
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "seed:articles": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-articles.ts",
+    "seed:dawuh": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-dawuh.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

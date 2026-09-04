@@ -1,6 +1,15 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export const SiteHeader = () => {
+  const pathname = usePathname()
+  const navClass = (href: string) =>
+    pathname === href || (href !== '/' && pathname.startsWith(`${href}/`))
+      ? 'text-primary font-bold font-label-md text-label-md'
+      : 'text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors'
+
   return (
     <header className="fixed top-0 w-full z-50 bg-cream-bg/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       <div className="w-full bg-surface-container-low">
@@ -42,16 +51,16 @@ export const SiteHeader = () => {
           </Link>
 
           <nav className="hidden xl:flex items-center gap-space-md ml-space-md">
-            <Link href="/" className="text-primary font-bold">
+            <Link href="/" className={navClass('/')}>
               Beranda
             </Link>
-            <Link href="/dawuh" className="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+            <Link href="/dawuh" className={navClass('/dawuh')}>
               Dawuh & Khazanah
             </Link>
-            <Link href="/agenda" className="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+            <Link href="/agenda" className={navClass('/agenda')}>
               Safari Dakwah
             </Link>
-            <Link href="/berita" className="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+            <Link href="/berita" className={navClass('/berita')}>
               Artikel & Opini
             </Link>
           </nav>
