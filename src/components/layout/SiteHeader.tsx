@@ -74,13 +74,14 @@ const NAV_ITEMS = [
 
 type SiteHeaderProps = {
   initialNow: string
+  isLatestLoading?: boolean
   latestArticle: {
     slug: string
     title: string
   } | null
 }
 
-export const SiteHeader = ({ initialNow, latestArticle }: SiteHeaderProps) => {
+export const SiteHeader = ({ initialNow, isLatestLoading = false, latestArticle }: SiteHeaderProps) => {
   const pathname = usePathname()
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isSearchOpen, setSearchOpen] = useState(false)
@@ -129,7 +130,9 @@ export const SiteHeader = ({ initialNow, latestArticle }: SiteHeaderProps) => {
               <span className="bg-secondary text-on-secondary px-space-xs py-0.5 rounded-full font-label-sm text-label-sm">
                 Terkini
               </span>
-              {latestArticle ? (
+              {isLatestLoading ? (
+                <span aria-label="Memuat berita terkini" className="h-4 w-64 animate-pulse rounded-full bg-primary/10" />
+              ) : latestArticle ? (
                 <Link
                   className="text-on-surface truncate max-w-[28rem] font-body-sm text-body-sm hover:text-primary transition-colors"
                   href={`/berita/${latestArticle.slug}`}
