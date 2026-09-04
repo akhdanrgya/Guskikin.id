@@ -193,3 +193,23 @@ export const getArticleBySlug = async (slug: string) => {
     return null
   }
 }
+
+export const getLatestArticle = async () => {
+  try {
+    const payload = await getPayload({ config })
+    const result = await payload.find({
+      collection: 'posts',
+      depth: 0,
+      limit: 1,
+      overrideAccess: false,
+      pagination: false,
+      sort: '-publishedAt',
+      where: publishedWhere,
+    })
+
+    return result.docs[0] ?? null
+  } catch (error) {
+    console.error('Unable to load latest article', error)
+    return null
+  }
+}

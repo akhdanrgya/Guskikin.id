@@ -2,8 +2,75 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
-export const SiteHeader = () => {
+const HIJRI_MONTHS = [
+  'Muharam',
+  'Safar',
+  'Rabiul Awal',
+  'Rabiul Akhir',
+  'Jumadil Awal',
+  'Jumadil Akhir',
+  'Rajab',
+  'Syakban',
+  'Ramadan',
+  'Syawal',
+  'Zulkaidah',
+  'Zulhijah',
+]
+
+const getPart = (parts: Intl.DateTimeFormatPart[], type: Intl.DateTimeFormatPartTypes) =>
+  parts.find((part) => part.type === type)?.value ?? ''
+
+const formatHeaderDate = (date: Date) =>
+  new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    timeZone: 'Asia/Jakarta',
+    weekday: 'long',
+    year: 'numeric',
+  }).format(date)
+
+const formatHijriDate = (date: Date) => {
+  const parts = new Intl.DateTimeFormat('id-ID-u-ca-islamic', {
+    day: 'numeric',
+    month: 'numeric',
+    timeZone: 'Asia/Jakarta',
+    year: 'numeric',
+  }).formatToParts(date)
+  const monthIndex = Number(getPart(parts, 'month')) - 1
+  const month = HIJRI_MONTHS[monthIndex] ?? getPart(parts, 'month')
+
+  return `${getPart(parts, 'day')} ${month} ${getPart(parts, 'year')} H`
+}
+
+const HeaderDate = ({ initialNow }: { initialNow: string }) => {
+  const [currentDate, setCurrentDate] = useState(() => new Date(initialNow))
+
+  useEffect(() => {
+    const interval = window.setInterval(() => setCurrentDate(new Date()), 30_000)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="flex items-center gap-space-xs text-primary font-medium" aria-live="polite">
+      <time dateTime={currentDate.toISOString()}>{formatHeaderDate(currentDate)}</time>
+      <span className="text-outline-variant" aria-hidden="true">•</span>
+      <span className="text-secondary">{formatHijriDate(currentDate)}</span>
+    </div>
+  )
+}
+
+type SiteHeaderProps = {
+  initialNow: string
+  latestArticle: {
+    slug: string
+    title: string
+  } | null
+}
+
+export const SiteHeader = ({ initialNow, latestArticle }: SiteHeaderProps) => {
   const pathname = usePathname()
   const navClass = (href: string) =>
     pathname === href || (href !== '/' && pathname.startsWith(`${href}/`))
@@ -15,18 +82,23 @@ export const SiteHeader = () => {
       <div className="w-full bg-surface-container-low">
         <div className="max-w-container-max mx-auto px-gutter-desktop h-10 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
           <div className="flex items-center gap-space-md">
-            <div className="flex items-center gap-space-xs text-primary font-medium">
-              <span>Kamis, 24 Oktober 2024</span>
-              <span className="text-outline-variant">•</span>
-              <span className="text-secondary">20 Rabiul Akhir 1446 H</span>
-            </div>
+            <HeaderDate initialNow={initialNow} />
             <div className="hidden lg:flex items-center gap-space-xs bg-surface-container-lowest px-space-xs py-space-2xs rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
               <span className="bg-secondary text-on-secondary px-space-xs py-0.5 rounded-full font-label-sm text-label-sm">
                 Terkini
               </span>
-              <p className="text-on-surface truncate max-w-[28rem] font-body-sm text-body-sm">
-                Pesantren Tebuireng Gelar Halaqah Fiqih Peradaban
-              </p>
+              {latestArticle ? (
+                <Link
+                  className="text-on-surface truncate max-w-[28rem] font-body-sm text-body-sm hover:text-primary transition-colors"
+                  href={`/berita/${latestArticle.slug}`}
+                >
+                  {latestArticle.title}
+                </Link>
+              ) : (
+                <p className="text-on-surface max-w-[28rem] font-body-sm text-body-sm">
+                  Belum ada berita terbaru
+                </p>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-space-lg">
