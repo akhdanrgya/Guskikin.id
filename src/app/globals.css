@@ -51,7 +51,7 @@
   --color-on-primary-fixed-variant: #0f5132;
   --color-outline-variant: #c0c9c0;
   --color-inverse-surface: #213145;
-  --color-text-body: #475569;
+  --color-text-body: #64748b;
   --color-inverse-on-surface: #eaf1ff;
   --color-surface-container-lowest: #ffffff;
   --color-secondary-fixed-dim: #ffb77d;
@@ -75,7 +75,7 @@
   --color-emerald-deep: #064e3b;
   --color-error-container: #ffdad6;
   --color-on-primary-fixed: #002111;
-  --color-tertiary: #003914;
+  --color-tertiary: #16a34a;
   --color-primary-fixed: #b0f1c7;
   --color-surface-bright: #f8f9ff;
   --color-accent-gold-dark: #b45309;
@@ -87,25 +87,73 @@
   --color-tertiary-container: #005220;
 
   /* Fonts */
-  --font-playfair: var(--font-playfair);
-  --font-jakarta: var(--font-jakarta);
+  --font-editorial: "Playfair Display", "Times New Roman", serif;
+  --font-interface: "Plus Jakarta Sans", "Segoe UI", sans-serif;
 
   /* Font classes to match Stitch classes */
-  --font-body-sm: var(--font-jakarta);
-  --font-label-sm: var(--font-jakarta);
-  --font-headline-md: var(--font-playfair);
-  --font-headline-xl: var(--font-playfair);
-  --font-display-lg-mobile: var(--font-playfair);
-  --font-headline-sm: var(--font-playfair);
-  --font-caption: var(--font-jakarta);
-  --font-body-xl: var(--font-jakarta);
-  --font-headline-lg-mobile: var(--font-playfair);
-  --font-headline-lg: var(--font-playfair);
-  --font-label-md: var(--font-jakarta);
-  --font-body-md: var(--font-jakarta);
-  --font-body-lg: var(--font-jakarta);
-  --font-headline-xl-mobile: var(--font-playfair);
-  --font-display-lg: var(--font-playfair);
+  --font-body-sm: var(--font-interface);
+  --font-label-sm: var(--font-interface);
+  --font-headline-md: var(--font-editorial);
+  --font-headline-xl: var(--font-editorial);
+  --font-display-lg-mobile: var(--font-editorial);
+  --font-headline-sm: var(--font-editorial);
+  --font-caption: var(--font-interface);
+  --font-body-xl: var(--font-interface);
+  --font-headline-lg-mobile: var(--font-editorial);
+  --font-headline-lg: var(--font-editorial);
+  --font-label-md: var(--font-interface);
+  --font-body-md: var(--font-interface);
+  --font-body-lg: var(--font-interface);
+  --font-headline-xl-mobile: var(--font-editorial);
+  --font-display-lg: var(--font-editorial);
+
+  /* Tailwind v4 type-scale utilities */
+  --text-caption: 0.6875rem;
+  --text-caption--line-height: 1rem;
+  --text-label-sm: 0.6875rem;
+  --text-label-sm--line-height: 1rem;
+  --text-label-md: 0.75rem;
+  --text-label-md--line-height: 1.125rem;
+  --text-body-sm: 0.75rem;
+  --text-body-sm--line-height: 1.125rem;
+  --text-body-md: 0.875rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-lg: 1rem;
+  --text-body-lg--line-height: 1.75rem;
+  --text-body-xl: 1.125rem;
+  --text-body-xl--line-height: 1.875rem;
+  --text-headline-sm: 1.25rem;
+  --text-headline-sm--line-height: 1.65rem;
+  --text-headline-md: 1.5rem;
+  --text-headline-md--line-height: 1.9rem;
+  --text-headline-lg-mobile: 2rem;
+  --text-headline-lg-mobile--line-height: 2.35rem;
+  --text-headline-lg: 2.5rem;
+  --text-headline-lg--line-height: 2.9rem;
+  --text-headline-xl-mobile: 2.5rem;
+  --text-headline-xl-mobile--line-height: 2.9rem;
+  --text-headline-xl: 3.5rem;
+  --text-headline-xl--line-height: 3.9rem;
+  --text-display-lg-mobile: 3rem;
+  --text-display-lg-mobile--line-height: 3.3rem;
+  --text-display-lg: 4.5rem;
+  --text-display-lg--line-height: 4.8rem;
+
+  /* Named spacing used by the Stitch-derived component system */
+  --spacing-space-2xs: 0.25rem;
+  --spacing-space-xs: 0.5rem;
+  --spacing-space-sm: 0.75rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-2xl: 3rem;
+  --spacing-space-3xl: 4rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-gutter-tablet: 1.5rem;
+  --spacing-gutter-desktop: 2rem;
+
+  /* Editorial content width from the approved 1280px desktop direction */
+  --container-container-max: 80rem;
 }
 
 /* Base configuration */
@@ -116,19 +164,19 @@
   --card-foreground: oklch(0.14 0.05 90);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.14 0.05 90);
-  --primary: oklch(0.3 0.1 160);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.5 0.15 60);
-  --secondary-foreground: oklch(0.98 0 0);
+  --primary: #0f5132;
+  --primary-foreground: #ffffff;
+  --secondary: #d97706;
+  --secondary-foreground: #ffffff;
   --muted: oklch(0.96 0.01 90);
-  --muted-foreground: oklch(0.55 0.03 90);
+  --muted-foreground: #64748b;
   --accent: oklch(0.96 0.01 90);
   --accent-foreground: oklch(0.14 0.05 90);
   --destructive: oklch(0.57 0.25 27);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.9 0.02 90);
   --input: oklch(0.9 0.02 90);
-  --ring: oklch(0.3 0.1 160);
+  --ring: #0f5132;
   --radius: 0.75rem; /* rounded-xl */
 }
 

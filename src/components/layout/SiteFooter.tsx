@@ -1,59 +1,57 @@
 import Link from 'next/link'
 
 export const SiteFooter = () => {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="w-full bg-surface-container-lowest shadow-[0_-1px_12px_rgba(0,0,0,0.03)] mt-space-4xl">
-      <div className="max-w-container-max mx-auto px-gutter-desktop py-space-3xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-2xl">
-          <div className="lg:col-span-4 flex flex-col gap-space-md">
-            <div className="flex items-center gap-space-sm">
-              <span className="font-headline-md text-headline-md text-primary">guskikin.id</span>
-            </div>
-            <p className="font-body-md text-body-md text-on-surface-variant">
-              Portal resmi khazanah pemikiran, gagasan kebangsaan, dan rekam jejak dakwah K.H. Abdul Hakim Mahfudz (Gus Kikin) — Pengasuh Pondok Pesantren Tebuireng Jombang & Ketua Pengurus Wilayah Nahdlatul Ulama (PWNU) Jawa Timur.
+    <footer className="w-full border-t border-border bg-surface-container-lowest">
+      <div className="mx-auto max-w-container-max px-gutter-mobile py-space-3xl sm:px-gutter-tablet lg:px-gutter-desktop">
+        <div className="grid grid-cols-1 gap-space-2xl md:grid-cols-2 lg:grid-cols-12">
+          <div className="flex flex-col gap-space-md lg:col-span-4">
+            <span className="font-headline-md text-headline-md font-bold text-primary">guskikin.id</span>
+            <p className="max-w-sm font-body-md text-body-md leading-7 text-text-body">
+              Portal khazanah pemikiran, gagasan kebangsaan, dan rekam jejak dakwah K.H. Abdul Hakim Mahfudz.
             </p>
           </div>
-          
-          <div className="lg:col-span-2 flex flex-col gap-space-sm">
-            <span className="font-headline-sm text-headline-sm text-primary">Rubrik Khazanah</span>
-            <div className="flex flex-col gap-space-xs font-body-sm text-body-sm">
-              <Link href="/dawuh" className="text-on-surface-variant hover:text-primary transition-colors">Dawuh & Tausiyah</Link>
-              <Link href="/berita" className="text-on-surface-variant hover:text-primary transition-colors">Opini Kebangsaan</Link>
-              <Link href="/tentang" className="text-on-surface-variant hover:text-primary transition-colors">Warta Tebuireng</Link>
+
+          <div className="flex flex-col gap-space-sm lg:col-span-2">
+            <span className="font-headline-sm text-headline-sm font-bold text-primary">Rubrik Khazanah</span>
+            <div className="flex flex-col gap-space-xs font-body-sm text-body-sm text-text-body">
+              <Link href="/dawuh" className="transition-colors hover:text-primary">Dawuh &amp; Tausiyah</Link>
+              <Link href="/berita" className="transition-colors hover:text-primary">Opini Kebangsaan</Link>
+              <Link href="/khazanah" className="transition-colors hover:text-primary">Arsip Keilmuan</Link>
             </div>
           </div>
 
-          <div className="lg:col-span-2 flex flex-col gap-space-sm">
-            <span className="font-headline-sm text-headline-sm text-primary">Tautan Lembaga</span>
-            <div className="flex flex-col gap-space-xs font-body-sm text-body-sm">
-              <a href="#" className="text-on-surface-variant hover:text-primary transition-colors">Pesantren Tebuireng</a>
-              <a href="#" className="text-on-surface-variant hover:text-primary transition-colors">PWNU Jawa Timur</a>
-              <a href="#" className="text-on-surface-variant hover:text-primary transition-colors">PBNU Official</a>
+          <div className="flex flex-col gap-space-sm lg:col-span-2">
+            <span className="font-headline-sm text-headline-sm font-bold text-primary">Jelajahi</span>
+            <div className="flex flex-col gap-space-xs font-body-sm text-body-sm text-text-body">
+              <Link href="/agenda" className="transition-colors hover:text-primary">Safari Dakwah</Link>
+              <Link href="/media" className="transition-colors hover:text-primary">Video &amp; Audio</Link>
+              <Link href="/komunitas" className="transition-colors hover:text-primary">Komunitas</Link>
             </div>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col gap-space-md">
-            <div className="bg-cream-bg p-space-lg rounded-2xl shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
-              <span className="font-headline-sm text-headline-sm text-primary block mb-space-xs">Buletin Khazanah Mingguan</span>
-              <p className="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
-                Dapatkan untaian dawuh, intisari khutbah, dan perspektif keumatan Gus Kikin langsung di kotak masuk surel Anda setiap hari Jumat.
+          <div className="flex flex-col gap-space-md lg:col-span-4">
+            <div className="rounded-lg bg-cream-bg p-space-lg">
+              <span className="mb-space-xs block font-headline-sm text-headline-sm font-bold text-primary">Identitas Editorial</span>
+              <p className="font-body-sm text-body-sm leading-6 text-text-body">
+                Informasi penulis, sumber, tanggal terbit, dan kebijakan koreksi disajikan secara jelas pada setiap publikasi.
               </p>
-              <form className="flex flex-col sm:flex-row gap-space-xs">
-                <input 
-                  type="email" 
-                  placeholder="Ketikkan alamat email Anda..." 
-                  className="flex-1 h-11 px-space-md rounded-xl bg-surface-container-lowest text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none ring-1 ring-outline-variant focus:ring-2 focus:ring-primary"
-                />
-                <button type="button" className="h-11 px-space-lg rounded-xl bg-primary text-on-primary font-label-md text-label-md hover:bg-emerald-deep transition-all shadow-[0_1px_2px_rgba(0,0,0,0.05)] whitespace-nowrap">
-                  Langganan
-                </button>
-              </form>
+              <Link href="/tentang" className="mt-space-md inline-flex font-label-sm text-label-sm font-bold text-secondary hover:text-accent-gold-dark">
+                Tentang redaksi
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className="mt-space-2xl pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-caption text-caption">
-          <p>© 2024 guskikin.id — Seluruh Hak Cipta Dilindungi Undang-Undang. Dikelola oleh Tim Khazanah & Media Pesantren Tebuireng Jombang.</p>
+        <div className="mt-space-2xl flex flex-col gap-space-md border-t border-border pt-space-lg font-caption text-caption text-text-body md:flex-row md:items-center md:justify-between">
+          <p>© {currentYear} guskikin.id — Seluruh hak cipta dilindungi.</p>
+          <div className="flex flex-wrap gap-space-md">
+            <Link href="/tentang" className="hover:text-primary">Pedoman media</Link>
+            <Link href="/tentang" className="hover:text-primary">Kebijakan privasi</Link>
+            <Link href="/tentang" className="hover:text-primary">Kontak</Link>
+          </div>
         </div>
       </div>
     </footer>
