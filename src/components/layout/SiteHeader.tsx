@@ -63,6 +63,9 @@ export const SiteHeader = () => {
             <Link href="/berita" className={navClass('/berita')}>
               Artikel & Opini
             </Link>
+            <Link href="/media" className={navClass('/media')}>
+              Galeri Multimedia
+            </Link>
           </nav>
         </div>
 

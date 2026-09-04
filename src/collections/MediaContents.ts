@@ -30,6 +30,7 @@ export const MediaContents: CollectionConfig = {
         { label: 'Video', value: 'video' },
         { label: 'Audio', value: 'audio' },
         { label: 'Podcast', value: 'podcast' },
+        { label: 'Galeri Foto', value: 'photo-gallery' },
       ],
       required: true,
       admin: {
@@ -39,6 +40,14 @@ export const MediaContents: CollectionConfig = {
     {
       name: 'description',
       type: 'textarea',
+    },
+    {
+      name: 'isFeatured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'thumbnail',
@@ -58,6 +67,37 @@ export const MediaContents: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'externalUrl',
+      type: 'text',
+      admin: {
+        description: 'Tautan tayangan atau publikasi pada kanal eksternal.',
+      },
+    },
+    {
+      name: 'downloadableFile',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'galleryItems',
+      type: 'array',
+      admin: {
+        condition: (_, siblingData) => siblingData?.type === 'photo-gallery',
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'caption',
+          type: 'text',
+        },
+      ],
+    },
+    {
       name: 'duration',
       type: 'text',
       admin: {
@@ -66,6 +106,26 @@ export const MediaContents: CollectionConfig = {
     },
     {
       name: 'speaker',
+      type: 'text',
+    },
+    {
+      name: 'host',
+      type: 'text',
+    },
+    {
+      name: 'location',
+      type: 'text',
+    },
+    {
+      name: 'credit',
+      type: 'text',
+    },
+    {
+      name: 'resolution',
+      type: 'text',
+    },
+    {
+      name: 'fileSize',
       type: 'text',
     },
     {

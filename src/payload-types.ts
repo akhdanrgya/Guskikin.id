@@ -387,14 +387,32 @@ export interface MediaContent {
   id: number;
   title: string;
   slug: string;
-  type: 'video' | 'audio' | 'podcast';
+  type: 'video' | 'audio' | 'podcast' | 'photo-gallery';
   description?: string | null;
+  isFeatured?: boolean | null;
   thumbnail?: (number | null) | Media;
   youtubeId?: string | null;
   audioUrl?: string | null;
   videoUrl?: string | null;
+  /**
+   * Tautan tayangan atau publikasi pada kanal eksternal.
+   */
+  externalUrl?: string | null;
+  downloadableFile?: (number | null) | Media;
+  galleryItems?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   duration?: string | null;
   speaker?: string | null;
+  host?: string | null;
+  location?: string | null;
+  credit?: string | null;
+  resolution?: string | null;
+  fileSize?: string | null;
   series?: string | null;
   episode?: number | null;
   transcript?: {
@@ -825,12 +843,27 @@ export interface MediaContentsSelect<T extends boolean = true> {
   slug?: T;
   type?: T;
   description?: T;
+  isFeatured?: T;
   thumbnail?: T;
   youtubeId?: T;
   audioUrl?: T;
   videoUrl?: T;
+  externalUrl?: T;
+  downloadableFile?: T;
+  galleryItems?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
   duration?: T;
   speaker?: T;
+  host?: T;
+  location?: T;
+  credit?: T;
+  resolution?: T;
+  fileSize?: T;
   series?: T;
   episode?: T;
   transcript?: T;

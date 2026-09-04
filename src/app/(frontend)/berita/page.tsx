@@ -224,7 +224,7 @@ export default async function ArticleArchivePage({
           <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 font-label-sm text-label-sm font-bold uppercase tracking-wide text-primary ring-1 ring-emerald-100">
             <Sparkles aria-hidden="true" className="size-3.5" /> Khazanah intelektual pesantren
           </span>
-          <h1 className="mt-5 max-w-4xl font-editorial text-headline-xl-mobile font-bold leading-[1.06] tracking-tight text-text-headline lg:text-headline-xl">
+          <h1 className="mt-5 max-w-4xl font-editorial text-headline-xl-mobile font-bold leading-[1.06] tracking-tight text-primary lg:text-headline-xl">
             Khazanah Artikel, Opini &amp; Refleksi Kebangsaan
           </h1>
           <p className="mt-5 max-w-3xl font-body-lg text-body-lg leading-8 text-text-body">
