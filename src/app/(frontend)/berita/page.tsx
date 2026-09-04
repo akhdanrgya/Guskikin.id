@@ -208,16 +208,7 @@ export default async function ArticleArchivePage({
 
   return (
     <div className="bg-[#f7f9fc]">
-      <div className="border-b border-border bg-white">
-        <div className="mx-auto flex max-w-container-max flex-wrap items-center justify-between gap-3 px-gutter-mobile py-4 font-label-sm text-label-sm sm:px-gutter-tablet lg:px-gutter-desktop">
-          <div className="flex items-center gap-2 text-text-body">
-            <Link className="hover:text-primary" href="/">Beranda</Link>
-            <span aria-hidden="true">/</span>
-            <span className="font-bold text-primary">Artikel &amp; Opini</span>
-          </div>
-          <p className="text-text-body">Kanal publikasi resmi khazanah dan pemikiran Pesantren Tebuireng</p>
-        </div>
-      </div>
+      <div className="border-b border-border bg-surface-container-low"><div className="mx-auto flex max-w-container-max flex-wrap items-center justify-between gap-3 px-gutter-mobile py-4 font-label-sm text-label-sm sm:px-gutter-tablet lg:px-gutter-desktop"><nav className="flex items-center gap-2 text-text-body" aria-label="Breadcrumb"><Link className="hover:text-primary" href="/">Beranda</Link><span aria-hidden="true">/</span><span className="font-bold text-primary">Artikel &amp; Opini</span></nav></div></div>
 
       <section className="border-b border-border bg-white">
         <div className="mx-auto max-w-container-max px-gutter-mobile py-12 sm:px-gutter-tablet lg:px-gutter-desktop lg:py-16">

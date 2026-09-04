@@ -68,11 +68,6 @@ export function EditorialHero() {
               Kajian utama khazanah pemikiran &amp; kebangsaan
             </span>
           </div>
-
-          <span className="inline-flex items-center gap-1.5 font-label-sm text-label-sm font-semibold text-primary">
-            <span className="size-1.5 rounded-full bg-primary" aria-hidden="true" />
-            Kanal Resmi Tebuireng
-          </span>
         </div>
 
         <div className="grid items-start gap-space-xl lg:grid-cols-12">
