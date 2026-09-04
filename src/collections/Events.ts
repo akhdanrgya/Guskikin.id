@@ -28,6 +28,21 @@ export const Events: CollectionConfig = {
       type: 'textarea',
     },
     {
+      name: 'eventType',
+      type: 'select',
+      options: [
+        { label: 'Halaqah & Akademik', value: 'halaqah' },
+        { label: 'Pengajian Rutin', value: 'pengajian-rutin' },
+        { label: 'Tabligh Akbar', value: 'tabligh-akbar' },
+        { label: 'Silaturahmi Pesantren', value: 'silaturahmi' },
+        { label: 'Agenda Lainnya', value: 'lainnya' },
+      ],
+      defaultValue: 'lainnya',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'startDate',
       type: 'date',
       required: true,
@@ -35,6 +50,13 @@ export const Events: CollectionConfig = {
     {
       name: 'endDate',
       type: 'date',
+    },
+    {
+      name: 'scheduleLabel',
+      type: 'text',
+      admin: {
+        description: 'Gunakan untuk jadwal berulang, misalnya “Setiap Ahad Pagi”.',
+      },
     },
     {
       name: 'venue',
@@ -47,6 +69,17 @@ export const Events: CollectionConfig = {
     {
       name: 'city',
       type: 'text',
+    },
+    {
+      name: 'organizer',
+      type: 'text',
+    },
+    {
+      name: 'audience',
+      type: 'text',
+      admin: {
+        description: 'Contoh: Terbuka untuk umum, santri dan alumni, atau undangan.',
+      },
     },
     {
       name: 'status',
@@ -63,12 +96,37 @@ export const Events: CollectionConfig = {
       },
     },
     {
+      name: 'isFeatured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       name: 'livestreamUrl',
       type: 'text',
     },
     {
       name: 'youtubeVideoId',
       type: 'text',
+    },
+    {
+      name: 'mapUrl',
+      type: 'text',
+    },
+    {
+      name: 'registrationUrl',
+      type: 'text',
+    },
+    {
+      name: 'contact',
+      type: 'group',
+      fields: [
+        { name: 'name', type: 'text' },
+        { name: 'phone', type: 'text' },
+        { name: 'email', type: 'email' },
+      ],
     },
     {
       name: 'poster',

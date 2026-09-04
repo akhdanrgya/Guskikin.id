@@ -319,14 +319,32 @@ export interface Event {
   title: string;
   slug: string;
   description?: string | null;
+  eventType?: ('halaqah' | 'pengajian-rutin' | 'tabligh-akbar' | 'silaturahmi' | 'lainnya') | null;
   startDate: string;
   endDate?: string | null;
+  /**
+   * Gunakan untuk jadwal berulang, misalnya “Setiap Ahad Pagi”.
+   */
+  scheduleLabel?: string | null;
   venue?: string | null;
   address?: string | null;
   city?: string | null;
+  organizer?: string | null;
+  /**
+   * Contoh: Terbuka untuk umum, santri dan alumni, atau undangan.
+   */
+  audience?: string | null;
   status?: ('upcoming' | 'today' | 'live' | 'completed') | null;
+  isFeatured?: boolean | null;
   livestreamUrl?: string | null;
   youtubeVideoId?: string | null;
+  mapUrl?: string | null;
+  registrationUrl?: string | null;
+  contact?: {
+    name?: string | null;
+    phone?: string | null;
+    email?: string | null;
+  };
   poster?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -772,14 +790,28 @@ export interface EventsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   description?: T;
+  eventType?: T;
   startDate?: T;
   endDate?: T;
+  scheduleLabel?: T;
   venue?: T;
   address?: T;
   city?: T;
+  organizer?: T;
+  audience?: T;
   status?: T;
+  isFeatured?: T;
   livestreamUrl?: T;
   youtubeVideoId?: T;
+  mapUrl?: T;
+  registrationUrl?: T;
+  contact?:
+    | T
+    | {
+        name?: T;
+        phone?: T;
+        email?: T;
+      };
   poster?: T;
   updatedAt?: T;
   createdAt?: T;
