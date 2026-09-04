@@ -14,6 +14,7 @@ import type {
 export type HomepageContent = {
   community: CommunityPost[]
   dawuh: Dawuh | null
+  error: boolean
   events: Event[]
   hero: Post | null
   khazanah: Khazanah[]
@@ -32,6 +33,7 @@ const populatedMany = <T extends { id: number }>(values?: (number | T)[] | null)
 const emptyHomepage: HomepageContent = {
   community: [],
   dawuh: null,
+  error: true,
   events: [],
   hero: null,
   khazanah: [],
@@ -120,9 +122,10 @@ export const getHomepageContent = async (): Promise<HomepageContent> => {
       media.docs[0] ??
       null
 
-    return {
-      community: community.docs,
-      dawuh: selectedDawuh[0] ?? dawuh.docs[0] ?? null,
+  return {
+    community: community.docs,
+    dawuh: selectedDawuh[0] ?? dawuh.docs[0] ?? null,
+    error: false,
       events: (selectedEvents.length ? selectedEvents : events.docs).slice(0, 3),
       hero,
       khazanah: (selectedKhazanah.length ? selectedKhazanah : khazanah.docs).slice(0, 3),
