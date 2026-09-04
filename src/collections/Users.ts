@@ -16,7 +16,7 @@ export const Users: CollectionConfig = {
         { label: 'Author', value: 'author' },
         { label: 'Contributor', value: 'contributor' },
       ],
-      defaultValue: 'contributor',
+      defaultValue: ({ user }) => (user ? 'contributor' : 'super-admin'),
       required: true,
     },
   ],

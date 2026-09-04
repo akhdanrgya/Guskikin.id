@@ -31,8 +31,17 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
+    components: {
+      beforeLogin: ['/components/admin/AuthIntro'],
+      graphics: {
+        Logo: '/components/admin/AuthLogo',
+      },
+    },
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    meta: {
+      titleSuffix: '— guskikin.id',
     },
   },
   collections: [
