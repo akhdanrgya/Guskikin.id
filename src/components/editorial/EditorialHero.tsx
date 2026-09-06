@@ -8,6 +8,7 @@ import {
 import Link from 'next/link'
 
 import { ArticleImage } from '@/components/articles/ArticleImage'
+import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { formatArticleDate, getAuthors, getCategory } from '@/lib/articles'
 import type { Post } from '@/payload-types'
 
@@ -20,7 +21,17 @@ export function EditorialHero({
   leadStory: Post | null
   supportingStories: Post[]
 }) {
-  if (!leadStory) return null
+  if (!leadStory) {
+    return (
+      <HomepageSectionEmptyState
+        description="Artikel, berita, dan perspektif terbaru sedang disiapkan oleh tim redaksi."
+        eyebrow="Warta & Perspektif"
+        icon={BookOpenText}
+        title="Artikel sedang dipersiapkan"
+        titleId="editorial-empty-title"
+      />
+    )
+  }
 
   const category = getCategory(leadStory)?.title || 'Artikel Pilihan'
   const author = getAuthors(leadStory)[0]?.name || 'Tim Redaksi guskikin.id'
@@ -46,7 +57,11 @@ export function EditorialHero({
         </div>
 
         <div className="grid items-start gap-space-xl lg:grid-cols-12">
-          <article className="overflow-hidden rounded-lg border border-border/65 bg-surface-container-lowest shadow-[0_12px_35px_rgba(23,74,55,0.06)] lg:col-span-7">
+          <article
+            className={`overflow-hidden rounded-lg border border-border/65 bg-surface-container-lowest shadow-[0_12px_35px_rgba(23,74,55,0.06)] ${
+              supportingStories.length ? 'lg:col-span-7' : 'lg:col-span-8 lg:col-start-3'
+            }`}
+          >
             <Link
               href={href}
               aria-label={`Baca: ${leadStory.title}`}
@@ -101,7 +116,8 @@ export function EditorialHero({
             </div>
           </article>
 
-          <aside aria-labelledby="supporting-stories-title" className="lg:col-span-5">
+          {supportingStories.length ? (
+            <aside aria-labelledby="supporting-stories-title" className="lg:col-span-5">
             <div className="mb-space-sm flex items-end justify-between gap-space-md">
               <div>
                 <span className="mb-1 block font-label-sm text-label-sm font-bold uppercase tracking-[0.12em] text-secondary">
@@ -173,7 +189,8 @@ export function EditorialHero({
                 )
               })}
             </div>
-          </aside>
+            </aside>
+          ) : null}
         </div>
       </div>
     </section>

@@ -1,11 +1,23 @@
 import { ArrowRight, BookOpenText, MapPin, Quote } from 'lucide-react'
 import Link from 'next/link'
 
+import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { isDawuhEvent, isDawuhTopic } from '@/lib/dawuh'
 import type { Dawuh } from '@/payload-types'
 
 export function DawuhFeature({ record }: { record: Dawuh | null }) {
-  if (!record) return null
+  if (!record) {
+    return (
+      <HomepageSectionEmptyState
+        description="Petuah dan mutiara hikmah Gus Kikin sedang disiapkan untuk ditampilkan di sini."
+        eyebrow="Kalam & Mutiara Hikmah"
+        icon={Quote}
+        title="Dawuh sedang dipersiapkan"
+        titleId="dawuh-empty-title"
+        tone="blue"
+      />
+    )
+  }
 
   const event = isDawuhEvent(record.event) ? record.event : null
   const topic = isDawuhTopic(record.topic) ? record.topic.title : 'Sanad & Adab'

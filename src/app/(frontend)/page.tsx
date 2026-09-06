@@ -5,28 +5,19 @@ import { LatestNewsSection } from '@/components/editorial/LatestNewsSection'
 import { SafariDakwahSection } from '@/components/events/SafariDakwahSection'
 import { KhazanahSection } from '@/components/khazanah/KhazanahSection'
 import { MediaSection } from '@/components/media/MediaSection'
-import { NewsletterSection } from '@/components/shared/NewsletterSection'
 import { HomepageEmptyState } from '@/components/shared/HomepageEmptyState'
+import { NewsletterSection } from '@/components/shared/NewsletterSection'
 import { getHomepageContent } from '@/lib/homepage'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Page() {
   const content = await getHomepageContent()
-  const isHomepageEmpty = !(
-    content.hero ||
-    content.trendingStories.length ||
-    content.latestStories.length ||
-    content.dawuh ||
-    content.events.length ||
-    content.khazanah.length ||
-    content.mediaFeatured ||
-    content.mediaAudio.length ||
-    content.community.length
-  )
 
   return (
     <div className="flex w-full flex-col">
-      {isHomepageEmpty ? (
-        <HomepageEmptyState error={content.error} />
+      {content.error ? (
+        <HomepageEmptyState error />
       ) : (
         <>
           <EditorialHero leadStory={content.hero} supportingStories={content.trendingStories} />
