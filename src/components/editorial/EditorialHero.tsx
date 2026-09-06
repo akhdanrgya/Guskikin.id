@@ -35,7 +35,7 @@ export function EditorialHero({
 
   const category = getCategory(leadStory)?.title || 'Artikel Pilihan'
   const author = getAuthors(leadStory)[0]?.name || 'Tim Redaksi guskikin.id'
-  const href = `/berita/${leadStory.slug}`
+  const href = `/artikel/${leadStory.slug}`
   const readingTime = `${leadStory.readingTime || 5} menit baca`
 
   return (
@@ -132,7 +132,7 @@ export function EditorialHero({
               </div>
 
               <Link
-                href="/berita"
+                href="/artikel"
                 className="group inline-flex shrink-0 items-center gap-1.5 rounded-sm font-label-sm text-label-sm font-bold text-secondary transition-colors hover:text-accent-gold-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
               >
                 Arsip lengkap
@@ -169,7 +169,7 @@ export function EditorialHero({
                     </div>
 
                     <Link
-                      href={`/berita/${story.slug}`}
+                      href={`/artikel/${story.slug}`}
                       className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
                     >
                       <h3 className="font-headline-sm text-[1.05rem] font-semibold leading-snug text-text-headline transition-colors group-hover:text-primary sm:text-[1.12rem]">

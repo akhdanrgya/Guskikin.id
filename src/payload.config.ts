@@ -2,6 +2,8 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
+import { en } from 'payload/i18n/en'
+import { id } from 'payload/i18n/id'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { s3Storage } from '@payloadcms/storage-s3'
@@ -9,6 +11,7 @@ import { s3Storage } from '@payloadcms/storage-s3'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Posts } from './collections/Posts'
+import { News } from './collections/News'
 import { Categories } from './collections/Categories'
 import { Tags } from './collections/Tags'
 import { Authors } from './collections/Authors'
@@ -51,6 +54,7 @@ export default buildConfig({
     Users,
     Media,
     Posts,
+    News,
     Categories,
     Tags,
     Authors,
@@ -63,6 +67,10 @@ export default buildConfig({
     Pages,
   ],
   globals: [SiteSettings, Header, Footer, Homepage],
+  i18n: {
+    fallbackLanguage: 'id',
+    supportedLanguages: { en, id },
+  },
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

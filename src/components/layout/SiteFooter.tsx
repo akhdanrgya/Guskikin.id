@@ -18,7 +18,8 @@ export const SiteFooter = () => {
             <span className="font-headline-sm text-headline-sm font-bold text-primary">Rubrik Khazanah</span>
             <div className="flex flex-col gap-space-xs font-body-sm text-body-sm text-text-body">
               <Link href="/dawuh" className="transition-colors hover:text-primary">Dawuh &amp; Tausiyah</Link>
-              <Link href="/berita" className="transition-colors hover:text-primary">Opini Kebangsaan</Link>
+              <Link href="/artikel" className="transition-colors hover:text-primary">Artikel &amp; Opini</Link>
+              <Link href="/berita" className="transition-colors hover:text-primary">Berita Terkini</Link>
               <Link href="/khazanah" className="transition-colors hover:text-primary">Arsip Keilmuan</Link>
             </div>
           </div>

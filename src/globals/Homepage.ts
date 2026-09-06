@@ -10,7 +10,7 @@ export const Homepage: GlobalConfig = {
       name: 'heroStory',
       type: 'relationship',
       relationTo: 'posts',
-      required: true,
+      label: { en: 'Featured Article', id: 'Artikel Utama' },
     },
     {
       name: 'trendingStories',
@@ -18,6 +18,15 @@ export const Homepage: GlobalConfig = {
       relationTo: 'posts',
       hasMany: true,
       maxRows: 3,
+      label: { en: 'Supporting Articles', id: 'Artikel Pendamping' },
+    },
+    {
+      name: 'featuredNews',
+      type: 'relationship',
+      relationTo: 'news',
+      hasMany: true,
+      maxRows: 4,
+      label: { en: 'Featured News', id: 'Berita Pilihan' },
     },
     {
       name: 'featuredDawuh',

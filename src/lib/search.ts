@@ -7,7 +7,7 @@ export type GlobalSearchResult = {
   href: string
   id: string
   title: string
-  type: 'Agenda' | 'Artikel' | 'Dawuh' | 'Media'
+  type: 'Agenda' | 'Artikel' | 'Berita' | 'Dawuh' | 'Media'
 }
 
 export type GlobalSearchResponse = {
@@ -21,14 +21,26 @@ const matchingFields = (query: string, fields: string[]): Where => ({
 
 export const searchSite = async (rawQuery: string): Promise<GlobalSearchResponse> => {
   const query = rawQuery.trim()
-
   if (query.length < 2) return { error: false, results: [] }
 
   try {
     const payload = await getPayload({ config })
-    const [posts, dawuh, events, media] = await Promise.all([
+    const [posts, news, dawuh, events, media] = await Promise.all([
       payload.find({
         collection: 'posts',
+        depth: 0,
+        limit: 8,
+        overrideAccess: false,
+        sort: '-publishedAt',
+        where: {
+          and: [
+            { _status: { equals: 'published' } },
+            matchingFields(query, ['title', 'excerpt']),
+          ],
+        },
+      }),
+      payload.find({
+        collection: 'news',
         depth: 0,
         limit: 8,
         overrideAccess: false,
@@ -70,10 +82,18 @@ export const searchSite = async (rawQuery: string): Promise<GlobalSearchResponse
       ...posts.docs.map((post) => ({
         date: post.publishedAt ?? post.createdAt,
         excerpt: post.excerpt ?? null,
-        href: `/berita/${post.slug}`,
+        href: `/artikel/${post.slug}`,
         id: `artikel-${post.id}`,
         title: post.title,
         type: 'Artikel' as const,
+      })),
+      ...news.docs.map((record) => ({
+        date: record.publishedAt ?? record.createdAt,
+        excerpt: record.excerpt ?? null,
+        href: `/berita/${record.slug}`,
+        id: `berita-${record.id}`,
+        title: record.title,
+        type: 'Berita' as const,
       })),
       ...dawuh.docs.map((record) => ({
         date: record.date ?? record.createdAt,
@@ -102,14 +122,14 @@ export const searchSite = async (rawQuery: string): Promise<GlobalSearchResponse
     ]
 
     results.sort((a, b) => {
-      const aTime = a.date ? new Date(a.date).getTime() : 0
-      const bTime = b.date ? new Date(b.date).getTime() : 0
-      return bTime - aTime
+      const aDate = a.date ? new Date(a.date).getTime() : 0
+      const bDate = b.date ? new Date(b.date).getTime() : 0
+      return bDate - aDate
     })
 
     return { error: false, results: results.slice(0, 24) }
   } catch (error) {
-    console.error('Unable to search site content', error)
+    console.error('Unable to search site', error)
     return { error: true, results: [] }
   }
 }

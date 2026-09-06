@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     posts: Post;
+    news: News;
     categories: Category;
     tags: Tag;
     authors: Author;
@@ -90,6 +91,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    news: NewsSelect<false> | NewsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     tags: TagsSelect<false> | TagsSelect<true>;
     authors: AuthorsSelect<false> | AuthorsSelect<true>;
@@ -292,6 +294,41 @@ export interface Author {
   avatar?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news".
+ */
+export interface News {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  featuredImage?: (number | null) | Media;
+  category?: (number | null) | Category;
+  authors?: (number | Author)[] | null;
+  publishedAt?: string | null;
+  readingTime?: number | null;
+  isFeatured?: boolean | null;
+  isBreaking?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -558,6 +595,10 @@ export interface PayloadLockedDocument {
         value: number | Post;
       } | null)
     | ({
+        relationTo: 'news';
+        value: number | News;
+      } | null)
+    | ({
         relationTo: 'categories';
         value: number | Category;
       } | null)
@@ -727,6 +768,26 @@ export interface PostsSelect<T extends boolean = true> {
   featuredImage?: T;
   category?: T;
   tags?: T;
+  authors?: T;
+  publishedAt?: T;
+  readingTime?: T;
+  isFeatured?: T;
+  isBreaking?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news_select".
+ */
+export interface NewsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  content?: T;
+  featuredImage?: T;
+  category?: T;
   authors?: T;
   publishedAt?: T;
   readingTime?: T;
@@ -1014,8 +1075,9 @@ export interface Footer {
  */
 export interface Homepage {
   id: number;
-  heroStory: number | Post;
+  heroStory?: (number | null) | Post;
   trendingStories?: (number | Post)[] | null;
+  featuredNews?: (number | News)[] | null;
   featuredDawuh?: (number | Dawuh)[] | null;
   featuredEvents?: (number | Event)[] | null;
   featuredKhazanah?: (number | Khazanah)[] | null;
@@ -1086,6 +1148,7 @@ export interface FooterSelect<T extends boolean = true> {
 export interface HomepageSelect<T extends boolean = true> {
   heroStory?: T;
   trendingStories?: T;
+  featuredNews?: T;
   featuredDawuh?: T;
   featuredEvents?: T;
   featuredKhazanah?: T;

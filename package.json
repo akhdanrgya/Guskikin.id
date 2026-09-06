@@ -14,7 +14,8 @@
     "seed:articles": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-articles.ts",
     "seed:dawuh": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-dawuh.ts",
     "seed:events": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-events.ts",
-    "seed:media": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-media.ts"
+    "seed:media": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-media.ts",
+    "seed:news": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-news.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

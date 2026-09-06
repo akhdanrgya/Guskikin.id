@@ -1,18 +1,29 @@
 import { Clock3, Newspaper } from 'lucide-react'
 import Link from 'next/link'
 
+import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { SectionHeading } from '@/components/shared/SectionHeading'
-import { getCategory } from '@/lib/articles'
-import type { Post } from '@/payload-types'
+import { getNewsCategory } from '@/lib/news'
+import type { News } from '@/payload-types'
 
-export function LatestNewsSection({ stories }: { stories: Post[] }) {
-  if (!stories.length) return null
+export function LatestNewsSection({ stories }: { stories: News[] }) {
+  if (!stories.length) {
+    return (
+      <HomepageSectionEmptyState
+        description="Kabar terbaru dan informasi resmi sedang disiapkan oleh tim redaksi."
+        eyebrow="Ruang Kabar"
+        icon={Newspaper}
+        title="Berita sedang dipersiapkan"
+        titleId="latest-news-empty-title"
+      />
+    )
+  }
 
   const [featuredStory, ...compactStories] = stories
   const categories = [
     'Terbaru',
     ...Array.from(
-      new Set(stories.map((story) => getCategory(story)?.title).filter(Boolean)),
+      new Set(stories.map((story) => getNewsCategory(story)?.title).filter(Boolean)),
     ),
   ]
 
@@ -45,14 +56,18 @@ export function LatestNewsSection({ stories }: { stories: Post[] }) {
         </div>
 
         <div className="grid gap-space-xl lg:grid-cols-12">
-          <article className="relative overflow-hidden rounded-lg bg-primary p-space-xl text-primary-foreground lg:col-span-5 lg:p-space-2xl">
+          <article
+            className={`relative overflow-hidden rounded-lg bg-primary p-space-xl text-primary-foreground lg:p-space-2xl ${
+              compactStories.length ? 'lg:col-span-5' : 'lg:col-span-8 lg:col-start-3'
+            }`}
+          >
             <span className="absolute -right-2 -top-10 select-none font-headline-lg text-[10rem] font-bold leading-none text-white/5" aria-hidden="true">
               01
             </span>
             <div className="relative flex min-h-80 flex-col justify-between">
               <div>
                 <span className="inline-flex rounded-full bg-white/10 px-space-sm py-1 font-label-sm text-label-sm font-bold uppercase tracking-[0.1em] text-[#f5bd66]">
-                  {getCategory(featuredStory)?.title || 'Artikel'}
+                  {getNewsCategory(featuredStory)?.title || 'Berita'}
                 </span>
                 <Link href={`/berita/${featuredStory.slug}`} className="mt-space-lg block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-primary">
                   <h3 className="max-w-[18ch] font-headline-lg text-[clamp(1.75rem,3.3vw,2.7rem)] font-bold leading-[1.12] tracking-[-0.02em] transition-colors hover:text-[#f5bd66]">
@@ -70,7 +85,8 @@ export function LatestNewsSection({ stories }: { stories: Post[] }) {
             </div>
           </article>
 
-          <div className="divide-y divide-border overflow-hidden rounded-lg border border-border bg-cream-bg lg:col-span-7">
+          {compactStories.length ? (
+            <div className="divide-y divide-border overflow-hidden rounded-lg border border-border bg-cream-bg lg:col-span-7">
             {compactStories.map((story, index) => (
               <article key={story.title} className="group grid gap-space-md p-space-lg sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:p-space-xl">
                 <span className="font-headline-md text-headline-md font-bold text-secondary/35 group-hover:text-secondary" aria-hidden="true">
@@ -78,7 +94,7 @@ export function LatestNewsSection({ stories }: { stories: Post[] }) {
                 </span>
                 <div>
                   <span className="font-label-sm text-label-sm font-bold uppercase tracking-[0.1em] text-primary">
-                  {getCategory(story)?.title || 'Artikel'}
+                  {getNewsCategory(story)?.title || 'Berita'}
                   </span>
                   <Link href={`/berita/${story.slug}`} className="mt-1 block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4">
                     <h3 className="font-headline-sm text-[1.25rem] font-semibold leading-snug text-text-headline transition-colors group-hover:text-primary sm:text-[1.45rem]">
@@ -93,7 +109,8 @@ export function LatestNewsSection({ stories }: { stories: Post[] }) {
                 </span>
               </article>
             ))}
-          </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

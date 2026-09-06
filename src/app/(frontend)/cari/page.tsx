@@ -6,7 +6,7 @@ import { searchSite, type GlobalSearchResult } from '@/lib/search'
 
 export const metadata: Metadata = {
   title: 'Pencarian | guskikin.id',
-  description: 'Cari artikel, dawuh, agenda, dan media dari seluruh arsip guskikin.id.',
+  description: 'Cari artikel, berita, dawuh, agenda, dan media dari seluruh arsip guskikin.id.',
 }
 
 type SearchParams = Promise<{ q?: string | string[] }>
@@ -28,6 +28,7 @@ const formatResultDate = (date: string | null) => {
 const resultColors: Record<GlobalSearchResult['type'], string> = {
   Agenda: 'bg-amber-50 text-amber-800 ring-amber-200',
   Artikel: 'bg-emerald-50 text-primary ring-emerald-200',
+  Berita: 'bg-red-50 text-red-800 ring-red-200',
   Dawuh: 'bg-sky-50 text-sky-800 ring-sky-200',
   Media: 'bg-violet-50 text-violet-800 ring-violet-200',
 }

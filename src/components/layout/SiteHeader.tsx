@@ -68,20 +68,21 @@ const NAV_ITEMS = [
   { href: '/', label: 'Beranda' },
   { href: '/dawuh', label: 'Dawuh & Khazanah' },
   { href: '/agenda', label: 'Safari Dakwah' },
-  { href: '/berita', label: 'Artikel & Opini' },
+  { href: '/artikel', label: 'Artikel' },
+  { href: '/berita', label: 'Berita' },
   { href: '/media', label: 'Galeri Multimedia' },
 ]
 
 type SiteHeaderProps = {
   initialNow: string
   isLatestLoading?: boolean
-  latestArticle: {
+  latestNews: {
     slug: string
     title: string
   } | null
 }
 
-export const SiteHeader = ({ initialNow, isLatestLoading = false, latestArticle }: SiteHeaderProps) => {
+export const SiteHeader = ({ initialNow, isLatestLoading = false, latestNews }: SiteHeaderProps) => {
   const pathname = usePathname()
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isSearchOpen, setSearchOpen] = useState(false)
@@ -132,12 +133,12 @@ export const SiteHeader = ({ initialNow, isLatestLoading = false, latestArticle 
               </span>
               {isLatestLoading ? (
                 <span aria-label="Memuat berita terkini" className="h-4 w-64 animate-pulse rounded-full bg-primary/10" />
-              ) : latestArticle ? (
+              ) : latestNews ? (
                 <Link
                   className="text-on-surface truncate max-w-[28rem] font-body-sm text-body-sm hover:text-primary transition-colors"
-                  href={`/berita/${latestArticle.slug}`}
+                  href={`/berita/${latestNews.slug}`}
                 >
-                  {latestArticle.title}
+                  {latestNews.title}
                 </Link>
               ) : (
                 <p className="text-on-surface max-w-[28rem] font-body-sm text-body-sm">
@@ -273,7 +274,7 @@ export const SiteHeader = ({ initialNow, isLatestLoading = false, latestArticle 
               <label className="flex min-h-14 items-center gap-3 rounded-xl border border-border bg-surface-muted px-4 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10">
                 <Search aria-hidden="true" className="size-5 shrink-0 text-primary" />
                 <span className="sr-only">Kata kunci pencarian</span>
-                <input autoFocus className="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none placeholder:text-text-body/65" minLength={2} name="q" placeholder="Artikel, dawuh, agenda, atau media..." required type="search" />
+                <input autoFocus className="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none placeholder:text-text-body/65" minLength={2} name="q" placeholder="Artikel, berita, dawuh, agenda, atau media..." required type="search" />
               </label>
               <div className="mt-4 flex flex-col-reverse items-stretch justify-between gap-3 sm:flex-row sm:items-center">
                 <p className="font-caption text-caption text-text-body">Tekan Esc untuk menutup</p>
