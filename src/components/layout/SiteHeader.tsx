@@ -71,6 +71,7 @@ const NAV_ITEMS = [
   { href: '/artikel', label: 'Artikel' },
   { href: '/berita', label: 'Berita' },
   { href: '/media', label: 'Galeri Multimedia' },
+  { href: '/tentang', label: 'Tentang Redaksi' },
 ]
 
 type SiteHeaderProps = {

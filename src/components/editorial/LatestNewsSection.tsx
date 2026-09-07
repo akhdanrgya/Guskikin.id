@@ -11,10 +11,10 @@ export function LatestNewsSection({ stories }: { stories: News[] }) {
   if (!stories.length) {
     return (
       <HomepageSectionEmptyState
-        description="Kabar terbaru dan informasi resmi sedang disiapkan oleh tim redaksi."
+        description="Redaksi sedang menyiapkan kabar terbaru dan informasi resmi untuk ditampilkan di sini."
         eyebrow="Ruang Kabar"
         icon={Newspaper}
-        title="Berita sedang dipersiapkan"
+        title="Redaksi sedang menyiapkan berita"
         titleId="latest-news-empty-title"
       />
     )

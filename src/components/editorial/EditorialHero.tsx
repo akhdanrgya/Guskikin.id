@@ -21,10 +21,10 @@ export function EditorialHero({
   if (!leadStory) {
     return (
       <HomepageSectionEmptyState
-        description="Artikel, berita, dan perspektif terbaru sedang disiapkan oleh tim redaksi."
+        description="Redaksi sedang menyiapkan artikel dan esai terbaru untuk dibagikan di halaman ini."
         eyebrow="Warta & Perspektif"
         icon={BookOpenText}
-        title="Artikel sedang dipersiapkan"
+        title="Redaksi sedang menyiapkan artikel"
         titleId="editorial-empty-title"
       />
     )
