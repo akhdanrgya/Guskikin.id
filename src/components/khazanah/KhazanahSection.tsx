@@ -1,6 +1,7 @@
 import { BookOpenText, FileText, LibraryBig, ScrollText } from 'lucide-react'
 import Link from 'next/link'
 
+import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import type { Category, Khazanah } from '@/payload-types'
 
@@ -20,7 +21,17 @@ const isCategory = (value: Khazanah['topic']): value is Category =>
   Boolean(value && typeof value === 'object' && 'title' in value)
 
 export function KhazanahSection({ collections }: { collections: Khazanah[] }) {
-  if (!collections.length) return null
+  if (!collections.length) {
+    return (
+      <HomepageSectionEmptyState
+        description="Redaksi sedang menyiapkan naskah, transkrip, dan arsip pengetahuan terbaru."
+        eyebrow="Pustaka Digital"
+        icon={LibraryBig}
+        title="Khazanah sedang disiapkan"
+        titleId="khazanah-empty-title"
+      />
+    )
+  }
 
   return (
     <section aria-labelledby="khazanah-title" className="bg-primary py-space-3xl">

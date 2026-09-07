@@ -1,6 +1,7 @@
 import { CalendarDays, Clock3, MapPin, Radio } from 'lucide-react'
 import Link from 'next/link'
 
+import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import { formatEventTime, getEventStatusLabel } from '@/lib/events'
 import type { Event } from '@/payload-types'
@@ -21,7 +22,17 @@ const eventDateParts = (date: string) => {
 }
 
 export function SafariDakwahSection({ events }: { events: Event[] }) {
-  if (!events.length) return null
+  if (!events.length) {
+    return (
+      <HomepageSectionEmptyState
+        description="Redaksi sedang menyiapkan jadwal safari dakwah dan agenda terbaru."
+        eyebrow="Jadwal Tausiyah & Majelis"
+        icon={CalendarDays}
+        title="Agenda sedang disiapkan"
+        titleId="agenda-empty-title"
+      />
+    )
+  }
 
   return (
     <section aria-labelledby="agenda-title" className="bg-cream-bg py-space-3xl">

@@ -2,6 +2,7 @@ import { Clock3, Headphones, Play, Podcast, Video } from 'lucide-react'
 import Link from 'next/link'
 
 import { MediaCover } from '@/components/media/MediaCover'
+import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import { getMediaPrimaryURL, getMediaTypeLabel } from '@/lib/media'
 import type { MediaContent } from '@/payload-types'
@@ -13,7 +14,17 @@ export function MediaSection({
   audioItems: MediaContent[]
   featured: MediaContent | null
 }) {
-  if (!featured && !audioItems.length) return null
+  if (!featured && !audioItems.length) {
+    return (
+      <HomepageSectionEmptyState
+        description="Redaksi sedang menyiapkan video, audio, dan dokumentasi terbaru."
+        eyebrow="Tonton & Dengarkan"
+        icon={Video}
+        title="Ruang audiovisual sedang disiapkan"
+        titleId="media-empty-title"
+      />
+    )
+  }
 
   const featuredHref = featured
     ? getMediaPrimaryURL(featured) || `/media/${featured.slug}`

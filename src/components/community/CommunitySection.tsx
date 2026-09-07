@@ -1,6 +1,7 @@
 import { GraduationCap, HeartHandshake, Landmark, Network, UsersRound } from 'lucide-react'
 import Link from 'next/link'
 
+import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import type { CommunityPost } from '@/payload-types'
 
@@ -23,7 +24,17 @@ const plainText = (value: unknown): string => {
 }
 
 export function CommunitySection({ records }: { records: CommunityPost[] }) {
-  if (!records.length) return null
+  if (!records.length) {
+    return (
+      <HomepageSectionEmptyState
+        description="Redaksi sedang menyiapkan cerita komunitas, alumni, dan program pengabdian."
+        eyebrow="Tebuireng & Jejaring Umat"
+        icon={UsersRound}
+        title="Ruang komunitas sedang disiapkan"
+        titleId="community-empty-title"
+      />
+    )
+  }
 
   return (
     <section aria-labelledby="community-title" className="bg-cream-bg py-space-3xl">

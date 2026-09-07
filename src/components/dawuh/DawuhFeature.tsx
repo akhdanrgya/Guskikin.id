@@ -12,7 +12,7 @@ export function DawuhFeature({ record }: { record: Dawuh | null }) {
         description="Petuah dan mutiara hikmah Gus Kikin sedang disiapkan untuk ditampilkan di sini."
         eyebrow="Kalam & Mutiara Hikmah"
         icon={Quote}
-        title="Dawuh sedang dipersiapkan"
+        title="Dawuh sedang disiapkan"
         titleId="dawuh-empty-title"
         tone="blue"
       />
