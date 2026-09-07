@@ -7,7 +7,6 @@ export const News: CollectionConfig = {
     singular: { en: 'News', id: 'Berita' },
   },
   admin: {
-    group: { en: 'Editorial', id: 'Redaksi' },
     useAsTitle: 'title',
   },
   versions: {

@@ -419,8 +419,8 @@
     width: 100%;
     align-items: center;
     gap: 0.7rem;
-    margin: 0 0 1.8rem;
-    padding-bottom: 1.25rem;
+    margin: 0 0 0.85rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid rgb(255 255 255 / 12%);
     color: #ffffff;
     text-decoration: none;
@@ -470,6 +470,46 @@
     font-weight: 750;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+  }
+
+  .guskikin-admin-nav-tools {
+    margin-bottom: 1.5rem;
+  }
+
+  .guskikin-admin-create-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .guskikin-admin-create-actions a {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    min-height: 2.35rem;
+    padding: 0.45rem 0.55rem;
+    border: 1px solid rgb(255 255 255 / 16%);
+    border-radius: 6px;
+    background: rgb(255 255 255 / 8%);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .guskikin-admin-create-actions a:hover,
+  .guskikin-admin-create-actions a:focus-visible {
+    border-color: #e7a958;
+    background: rgb(255 255 255 / 14%);
+    color: #ffffff;
+  }
+
+  .guskikin-admin-create-actions span {
+    color: #e7a958;
+    font-size: 1rem;
+    line-height: 1;
   }
 
   .guskikin-admin-icon {

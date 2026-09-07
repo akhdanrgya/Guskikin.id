@@ -7,7 +7,6 @@ export const Posts: CollectionConfig = {
     singular: { en: 'Article', id: 'Artikel' },
   },
   admin: {
-    group: { en: 'Editorial', id: 'Redaksi' },
     useAsTitle: 'title',
   },
   versions: {
