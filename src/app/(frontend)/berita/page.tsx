@@ -3,9 +3,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { ArticleImage } from '@/components/articles/ArticleImage'
+import { AuthorProfile } from '@/components/authors/AuthorProfile'
 import {
   formatNewsDate,
   getNewsArchive,
+  getNewsAuthors,
   getNewsCategory,
   NEWS_PAGE_SIZE,
 } from '@/lib/news'
@@ -74,6 +76,7 @@ function NewsCard({ record }: { record: News }) {
             {record.excerpt}
           </p>
         ) : null}
+        <AuthorProfile author={getNewsAuthors(record)[0]} className="mt-5" compact />
         <Link
           className="mt-auto inline-flex items-center gap-1.5 border-t border-border pt-5 font-label-sm text-label-sm font-bold text-primary"
           href={`/berita/${record.slug}`}

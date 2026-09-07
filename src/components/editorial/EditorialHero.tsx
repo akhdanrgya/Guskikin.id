@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
+import { AuthorProfile } from '@/components/authors/AuthorProfile'
 import { ArticleImage } from '@/components/articles/ArticleImage'
 import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { formatArticleDate, getAuthors, getCategory } from '@/lib/articles'
@@ -34,7 +35,7 @@ export function EditorialHero({
   }
 
   const category = getCategory(leadStory)?.title || 'Artikel Pilihan'
-  const author = getAuthors(leadStory)[0]?.name || 'Tim Redaksi guskikin.id'
+  const author = getAuthors(leadStory)[0]
   const href = `/artikel/${leadStory.slug}`
   const readingTime = `${leadStory.readingTime || 5} menit baca`
 
@@ -103,12 +104,7 @@ export function EditorialHero({
               </p>
 
               <div className="mt-space-lg flex flex-col gap-space-sm rounded-md bg-surface-container-low px-space-md py-space-sm font-label-sm text-label-sm text-text-body sm:flex-row sm:items-center sm:justify-between">
-                <span className="inline-flex items-center gap-space-xs font-semibold text-primary">
-                  <span className="grid size-7 place-items-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                    TK
-                  </span>
-                  {author}
-                </span>
+                <AuthorProfile author={author} compact />
                 <time dateTime={leadStory.publishedAt || leadStory.createdAt}>
                   {formatArticleDate(leadStory.publishedAt || leadStory.createdAt)}
                 </time>
@@ -180,6 +176,7 @@ export function EditorialHero({
                     <p className="mt-space-xs hidden font-body-sm text-body-sm leading-5 text-text-body sm:line-clamp-2">
                       {story.excerpt}
                     </p>
+                    <AuthorProfile author={getAuthors(story)[0]} className="mt-3" compact />
                   </div>
 
                   <div className="grid aspect-square place-items-center self-start rounded-md border border-border/70 bg-surface-container-low text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

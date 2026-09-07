@@ -1,10 +1,11 @@
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { ArrowLeft, CalendarDays, Clock3, UserRound } from 'lucide-react'
+import { ArrowLeft, CalendarDays, Clock3 } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { ArticleImage } from '@/components/articles/ArticleImage'
+import { AuthorProfile } from '@/components/authors/AuthorProfile'
 import {
   formatArticleDate,
   getArticleBySlug,
@@ -92,7 +93,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-5 font-label-sm text-label-sm text-text-body">
             <span className="inline-flex items-center gap-2"><CalendarDays aria-hidden="true" className="size-4 text-secondary" /> {formatArticleDate(post.publishedAt)}</span>
             <span className="inline-flex items-center gap-2"><Clock3 aria-hidden="true" className="size-4 text-secondary" /> {post.readingTime || 5} menit baca</span>
-            <span className="inline-flex items-center gap-2"><UserRound aria-hidden="true" className="size-4 text-secondary" /> {authors.map((author) => author.name).join(', ') || 'Tim Redaksi Guskikin'}</span>
+            {authors.length ? authors.map((author) => <AuthorProfile author={author} compact key={author.id} />) : <AuthorProfile compact />}
           </div>
         </div>
       </header>
@@ -104,7 +105,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           </figure>
         ) : null}
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,46rem)_12rem] lg:items-start lg:justify-between">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,46rem)_16rem] lg:items-start lg:justify-between">
           <RichText
             className="article-prose rounded-2xl border border-border bg-white px-6 py-8 shadow-[0_10px_35px_rgba(15,81,50,0.045)] sm:px-10 sm:py-11"
             data={post.content}
@@ -114,8 +115,11 @@ export default async function ArticleDetailPage({ params }: PageProps) {
             <p className="font-label-sm text-label-sm font-bold uppercase tracking-[0.12em] text-secondary">Tentang Tulisan</p>
             <dl className="mt-4 space-y-4 font-body-sm text-body-sm">
               <div><dt className="text-text-body">Rubrik</dt><dd className="mt-1 font-bold text-primary">{category?.title || 'Khazanah Pemikiran'}</dd></div>
-              <div><dt className="text-text-body">Penulis</dt><dd className="mt-1 font-bold text-on-surface">{authors.map((author) => author.name).join(', ') || 'Tim Redaksi Guskikin'}</dd></div>
             </dl>
+            <div className="mt-5 space-y-3 border-t border-border pt-5">
+              <p className="font-label-sm text-label-sm font-bold uppercase tracking-[0.12em] text-secondary">Penulis</p>
+              {authors.length ? authors.map((author) => <AuthorProfile author={author} key={author.id} />) : <AuthorProfile />}
+            </div>
             {tags.length ? (
               <div className="mt-5 flex flex-wrap gap-2 border-t border-border pt-5">
                 {tags.map((tag) => <span className="rounded-full bg-surface-muted px-2.5 py-1 font-caption text-caption text-text-body" key={tag.id}>#{tag.title.replaceAll(' ', '')}</span>)}

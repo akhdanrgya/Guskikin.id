@@ -1,10 +1,11 @@
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { ArrowLeft, CalendarDays, Clock3, UserRound } from 'lucide-react'
+import { ArrowLeft, CalendarDays, Clock3 } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound, permanentRedirect } from 'next/navigation'
 
 import { ArticleImage } from '@/components/articles/ArticleImage'
+import { AuthorProfile } from '@/components/authors/AuthorProfile'
 import { getArticleBySlug } from '@/lib/articles'
 import {
   formatNewsDate,
@@ -72,7 +73,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-5 font-label-sm text-label-sm text-text-body">
             <span className="inline-flex items-center gap-2"><CalendarDays aria-hidden="true" className="size-4 text-secondary" /> {formatNewsDate(record.publishedAt || record.createdAt)}</span>
             <span className="inline-flex items-center gap-2"><Clock3 aria-hidden="true" className="size-4 text-secondary" /> {record.readingTime || 3} menit baca</span>
-            <span className="inline-flex items-center gap-2"><UserRound aria-hidden="true" className="size-4 text-secondary" /> {authors.map((author) => author.name).join(', ') || 'Tim Redaksi Guskikin'}</span>
+            {authors.length ? authors.map((author) => <AuthorProfile author={author} compact key={author.id} />) : <AuthorProfile compact />}
           </div>
         </div>
       </header>
@@ -87,6 +88,12 @@ export default async function NewsDetailPage({ params }: PageProps) {
           className="article-prose mx-auto max-w-3xl rounded-2xl border border-border bg-white px-6 py-8 shadow-[0_10px_35px_rgba(15,81,50,0.045)] sm:px-10 sm:py-11"
           data={record.content}
         />
+        <section aria-labelledby="news-author-title" className="mx-auto mt-6 max-w-3xl">
+          <p id="news-author-title" className="mb-3 font-label-sm text-label-sm font-bold uppercase tracking-[0.12em] text-secondary">Penulis</p>
+          <div className="space-y-3">
+            {authors.length ? authors.map((author) => <AuthorProfile author={author} key={author.id} />) : <AuthorProfile />}
+          </div>
+        </section>
         <Link className="mt-8 inline-flex items-center gap-2 font-label-sm text-label-sm font-bold text-primary hover:text-emerald-deep" href="/berita">
           <ArrowLeft aria-hidden="true" className="size-4" /> Kembali ke daftar berita
         </Link>

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 
 import { ArticleImage } from '@/components/articles/ArticleImage'
+import { AuthorProfile } from '@/components/authors/AuthorProfile'
 import {
   ARTICLE_PAGE_SIZE,
   formatArticleDate,
@@ -117,14 +118,7 @@ const FeaturedArticle = ({ post }: { post: Post }) => {
         ) : null}
 
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
-          <div>
-            <p className="font-label-sm text-label-sm font-bold text-primary">
-              {author?.name || 'Tim Redaksi Guskikin'}
-            </p>
-            <p className="mt-0.5 font-caption text-caption text-text-body">
-              Kanal publikasi resmi guskikin.id
-            </p>
-          </div>
+          <AuthorProfile author={author} compact />
           <Link
             className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 font-label-md text-label-md font-bold text-white transition-colors hover:bg-emerald-deep"
             href={`/artikel/${post.slug}`}
@@ -139,6 +133,7 @@ const FeaturedArticle = ({ post }: { post: Post }) => {
 
 const ArticleCard = ({ index, post }: { index: number; post: Post }) => {
   const category = getCategory(post)
+  const author = getAuthors(post)[0]
   const hasImage = Boolean(post.featuredImage && typeof post.featuredImage === 'object')
 
   return (
@@ -179,6 +174,7 @@ const ArticleCard = ({ index, post }: { index: number; post: Post }) => {
             {post.excerpt}
           </p>
         ) : null}
+        <AuthorProfile author={author} className="mt-5" compact />
         <Link
           className="mt-6 inline-flex items-center gap-1.5 border-t border-border pt-4 font-label-sm text-label-sm font-bold text-primary"
           href={`/artikel/${post.slug}`}

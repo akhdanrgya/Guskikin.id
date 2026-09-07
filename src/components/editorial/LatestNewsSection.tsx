@@ -1,9 +1,10 @@
 import { Clock3, Newspaper } from 'lucide-react'
 import Link from 'next/link'
 
+import { AuthorProfile } from '@/components/authors/AuthorProfile'
 import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { SectionHeading } from '@/components/shared/SectionHeading'
-import { getNewsCategory } from '@/lib/news'
+import { getNewsAuthors, getNewsCategory } from '@/lib/news'
 import type { News } from '@/payload-types'
 
 export function LatestNewsSection({ stories }: { stories: News[] }) {
@@ -77,6 +78,11 @@ export function LatestNewsSection({ stories }: { stories: News[] }) {
                 <p className="mt-space-md max-w-[52ch] font-body-md text-body-md leading-7 text-white/70">
                   {featuredStory.excerpt}
                 </p>
+                <AuthorProfile
+                  author={getNewsAuthors(featuredStory)[0]}
+                  className="mt-space-md rounded-md border-white/15 bg-white/10 [&_p:first-child]:text-white [&_p:last-child]:text-white/70 [&_span:first-child]:bg-secondary [&_span:first-child]:text-secondary-foreground"
+                  compact
+                />
               </div>
               <span className="mt-space-xl inline-flex items-center gap-space-xs font-label-sm text-label-sm text-white/65">
                 <Clock3 className="size-4" aria-hidden="true" />
@@ -102,6 +108,7 @@ export function LatestNewsSection({ stories }: { stories: News[] }) {
                     </h3>
                   </Link>
                   <p className="mt-space-xs font-body-sm text-body-sm leading-5 text-text-body">{story.excerpt}</p>
+                  <AuthorProfile author={getNewsAuthors(story)[0]} className="mt-3" compact />
                 </div>
                 <span className="inline-flex items-center gap-1 self-start font-label-sm text-label-sm text-text-body sm:justify-self-end">
                   <Clock3 className="size-3.5" aria-hidden="true" />
