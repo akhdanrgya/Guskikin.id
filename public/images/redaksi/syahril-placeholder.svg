@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder foto Much. Syahril Mubarok</title>
+  <desc id="desc">Ilustrasi profil sementara untuk anggota redaksi</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8f2eb"/>
+      <stop offset="1" stop-color="#9fc3ac"/>
+    </linearGradient>
+    <linearGradient id="coat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#174a37"/>
+      <stop offset="1" stop-color="#0b3023"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="675" cy="165" r="240" fill="#fff" opacity=".2"/>
+  <circle cx="118" cy="830" r="250" fill="#d49a3a" opacity=".11"/>
+  <path d="M0 875c95-95 217-142 400-142s305 47 400 142v125H0z" fill="url(#coat)"/>
+  <path d="M295 695h210l44 79-149 117-149-117z" fill="#f7f4ec"/>
+  <ellipse cx="400" cy="425" rx="168" ry="206" fill="#bd8a67"/>
+  <path d="M235 424c0-182 61-283 173-283 113 0 174 102 174 283-38-92-100-137-182-137-78 0-133 43-165 137z" fill="#14372d"/>
+  <path d="M266 290c37-83 101-125 192-125 75 0 132 39 170 116-75-27-139-40-193-40-62 0-118 16-169 49z" fill="#f8f4e8"/>
+  <path d="M263 270c23-91 82-148 177-171 91 19 151 74 180 165-65-27-127-40-185-40-60 0-117 15-172 46z" fill="#174a37"/>
+  <circle cx="342" cy="430" r="12" fill="#24342d"/>
+  <circle cx="462" cy="430" r="12" fill="#24342d"/>
+  <path d="M338 530c40 31 83 31 126 0" fill="none" stroke="#704f40" stroke-linecap="round" stroke-width="12"/>
+  <rect x="48" y="48" width="704" height="904" rx="26" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="4"/>
+</svg>

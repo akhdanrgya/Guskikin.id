@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder foto Syaifullah Amin</title>
+  <desc id="desc">Ilustrasi profil sementara untuk anggota redaksi</desc>
+  <defs>
+    <linearGradient id="bg" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#edf3ff"/>
+      <stop offset="1" stop-color="#b6c9db"/>
+    </linearGradient>
+    <linearGradient id="coat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#31576b"/>
+      <stop offset="1" stop-color="#173646"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="125" cy="175" r="240" fill="#fff" opacity=".22"/>
+  <circle cx="710" cy="815" r="260" fill="#d49a3a" opacity=".12"/>
+  <path d="M0 875c95-95 217-142 400-142s305 47 400 142v125H0z" fill="url(#coat)"/>
+  <path d="M295 695h210l48 86-153 110-153-110z" fill="#faf8f1"/>
+  <ellipse cx="400" cy="425" rx="168" ry="206" fill="#c4906d"/>
+  <path d="M234 418c0-176 61-273 171-273 111 0 172 98 172 273-40-88-99-132-177-132-76 0-131 42-166 132z" fill="#293833"/>
+  <path d="M258 276c33-109 100-168 199-176 87 29 143 88 167 176-68-25-130-38-187-38-60 0-120 13-179 38z" fill="#faf8ef"/>
+  <path d="M274 245c44-87 105-132 183-136 71 22 124 68 158 137-54-18-113-27-176-27-58 0-113 9-165 26z" fill="#d8d4c6"/>
+  <circle cx="342" cy="430" r="12" fill="#26342e"/>
+  <circle cx="462" cy="430" r="12" fill="#26342e"/>
+  <path d="M340 530c38 28 79 28 122 0" fill="none" stroke="#765243" stroke-linecap="round" stroke-width="12"/>
+  <path d="M323 487c49 21 100 21 153 0" fill="none" stroke="#3c332f" stroke-linecap="round" stroke-width="16"/>
+  <rect x="48" y="48" width="704" height="904" rx="26" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="4"/>
+</svg>
