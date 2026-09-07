@@ -134,33 +134,23 @@ const FeaturedArticle = ({ post }: { post: Post }) => {
 const ArticleCard = ({ index, post }: { index: number; post: Post }) => {
   const category = getCategory(post)
   const author = getAuthors(post)[0]
-  const hasImage = Boolean(post.featuredImage && typeof post.featuredImage === 'object')
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_16px_34px_rgba(15,81,50,0.08)]">
-      {hasImage ? (
-        <div className="relative aspect-[16/9] overflow-hidden bg-surface-container-low">
-          <ArticleImage
-            className="transition-transform duration-500 group-hover:scale-[1.025]"
-            image={post.featuredImage}
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 31vw"
-          />
-          {category ? (
-            <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 font-label-sm text-label-sm font-bold text-primary shadow-sm">
-              {category.title}
-            </span>
-          ) : null}
-        </div>
-      ) : (
-        <div className="relative flex min-h-32 items-end overflow-hidden border-b border-primary/10 bg-[#f2f7f3] p-5">
-          <span className="absolute right-5 top-1 font-editorial text-8xl font-bold text-primary/[0.055]">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-          <span className="relative inline-flex rounded-full bg-primary/10 px-3 py-1 font-label-sm text-label-sm font-bold text-primary">
-            {category?.title || 'Khazanah Pemikiran'}
-          </span>
-        </div>
-      )}
+      <div className="relative aspect-[16/9] overflow-hidden bg-surface-container-low">
+        <ArticleImage
+          className="transition-transform duration-500 group-hover:scale-[1.025]"
+          fallback
+          image={post.featuredImage}
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 31vw"
+        />
+        <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 font-label-sm text-label-sm font-bold text-primary shadow-sm">
+          {category?.title || 'Khazanah Pemikiran'}
+        </span>
+        <span className="absolute bottom-3 right-4 rounded-full bg-primary/80 px-2.5 py-1 font-label-sm text-label-sm font-bold text-primary-foreground backdrop-blur-sm">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+      </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <ArticleMeta post={post} />

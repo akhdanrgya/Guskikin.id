@@ -2,8 +2,6 @@ import {
   ArrowRight,
   BookOpenText,
   Clock3,
-  Landmark,
-  Network,
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -12,8 +10,6 @@ import { ArticleImage } from '@/components/articles/ArticleImage'
 import { HomepageSectionEmptyState } from '@/components/shared/HomepageSectionEmptyState'
 import { formatArticleDate, getAuthors, getCategory } from '@/lib/articles'
 import type { Post } from '@/payload-types'
-
-const supportingIcons = [BookOpenText, Network, Landmark] as const
 
 export function EditorialHero({
   leadStory,
@@ -138,13 +134,12 @@ export function EditorialHero({
 
             <div className="overflow-hidden rounded-lg border border-border/65 bg-surface-container-lowest shadow-[0_12px_35px_rgba(23,74,55,0.04)]">
               {supportingStories.map((story, index) => {
-                const Icon = supportingIcons[index % supportingIcons.length]
                 const storyCategory = getCategory(story)?.title || 'Khazanah'
 
                 return (
                   <article
                   key={story.id}
-                  className="group grid grid-cols-[2rem_minmax(0,1fr)_3.75rem] gap-space-sm border-b border-border/65 p-space-md last:border-b-0 sm:grid-cols-[2.25rem_minmax(0,1fr)_4.5rem] sm:gap-space-md sm:p-space-lg"
+                  className="group grid grid-cols-[2rem_minmax(0,1fr)_6rem] gap-space-sm border-b border-border/65 p-space-md last:border-b-0 sm:grid-cols-[2.25rem_minmax(0,1fr)_8rem] sm:gap-space-md sm:p-space-lg"
                 >
                   <span
                     className="pt-0.5 font-headline-md text-headline-md font-bold text-secondary/35 transition-colors group-hover:text-secondary"
@@ -179,8 +174,13 @@ export function EditorialHero({
                     <AuthorProfile author={getAuthors(story)[0]} className="mt-3" compact />
                   </div>
 
-                  <div className="grid aspect-square place-items-center self-start rounded-md border border-border/70 bg-surface-container-low text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <Icon className="size-5" strokeWidth={1.75} aria-hidden="true" />
+                  <div className="relative aspect-[4/3] self-start overflow-hidden rounded-md border border-border/70 bg-surface-container-low shadow-sm">
+                    <ArticleImage
+                      className="transition-transform duration-500 group-hover:scale-[1.06]"
+                      fallback
+                      image={story.featuredImage}
+                      sizes="(max-width: 639px) 96px, 128px"
+                    />
                   </div>
                   </article>
                 )

@@ -80,8 +80,9 @@ export function LatestNewsSection({ stories }: { stories: News[] }) {
                 </p>
                 <AuthorProfile
                   author={getNewsAuthors(featuredStory)[0]}
-                  className="mt-space-md rounded-md border-white/15 bg-white/10 [&_p:first-child]:text-white [&_p:last-child]:text-white/70 [&_span:first-child]:bg-secondary [&_span:first-child]:text-secondary-foreground"
+                  className="mt-space-md rounded-lg border border-white/15 bg-white/10 px-3 py-2.5"
                   compact
+                  tone="inverse"
                 />
               </div>
               <span className="mt-space-xl inline-flex items-center gap-space-xs font-label-sm text-label-sm text-white/65">
