@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 
 import { ArticleImage } from '@/components/articles/ArticleImage'
 import { AuthorProfile } from '@/components/authors/AuthorProfile'
+import { ShareActions } from '@/components/shared/ShareActions'
 import {
   formatArticleDate,
   getArticleBySlug,
@@ -126,6 +127,10 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               </div>
             ) : null}
           </aside>
+        </div>
+
+        <div className="mt-8">
+          <ShareActions excerpt={post.excerpt} path={`/artikel/${post.slug}`} title={post.title} />
         </div>
 
         <Link className="mt-8 inline-flex items-center gap-2 font-label-sm text-label-sm font-bold text-primary hover:text-emerald-deep" href="/artikel">

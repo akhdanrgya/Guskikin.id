@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+import { ShareActions } from '@/components/shared/ShareActions'
 import {
   formatEventDate,
   formatEventDay,
@@ -79,6 +80,10 @@ export default async function AgendaDetailPage({ params }: PageProps) {
             <div className="mt-7 flex flex-wrap gap-3"><Action href={getCalendarURL(event)} primary><CalendarDays aria-hidden="true" className="size-4" /> Simpan ke kalender</Action>{mapURL ? <Action href={mapURL}><Map aria-hidden="true" className="size-4 text-secondary" /> Buka Google Maps</Action> : null}{event.registrationUrl ? <Action href={event.registrationUrl}><UsersRound aria-hidden="true" className="size-4" /> Daftar acara</Action> : null}{event.livestreamUrl ? <Action href={event.livestreamUrl} primary><Radio aria-hidden="true" className="size-4" /> Tonton siaran</Action> : null}</div>
           </div>
         </section>
+
+        <div className="mt-6">
+          <ShareActions excerpt={event.description} path={`/agenda/${event.slug}`} title={event.title} />
+        </div>
 
         {event.contact && (event.contact.phone || event.contact.email) ? <aside className="mt-6 rounded-2xl border border-primary/15 bg-surface-container-low p-6"><h2 className="font-editorial text-headline-sm font-bold text-primary">Kontak Penyelenggara</h2><div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-body-sm text-body-sm text-text-body">{event.contact.name ? <strong className="text-on-surface">{event.contact.name}</strong> : null}{event.contact.phone ? <a className="font-bold text-primary" href={`tel:${event.contact.phone}`}>{event.contact.phone}</a> : null}{event.contact.email ? <a className="font-bold text-primary" href={`mailto:${event.contact.email}`}>{event.contact.email}</a> : null}</div></aside> : null}
         <Link className="mt-8 inline-flex items-center gap-2 font-label-sm text-label-sm font-bold text-primary hover:text-emerald-deep" href="/agenda"><ArrowLeft aria-hidden="true" className="size-4" /> Kembali ke semua agenda</Link>

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { QuoteActions } from '@/components/dawuh/QuoteActions'
+import { ShareActions } from '@/components/shared/ShareActions'
 import {
   formatDawuhDate,
   getDawuhBySlug,
@@ -78,6 +79,10 @@ export default async function DawuhDetailPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        <div className="mt-6">
+          <ShareActions excerpt={record.quote} path={`/dawuh/${record.slug}`} title={record.context || 'Mutiara Dawuh'} />
+        </div>
 
         <aside className="mt-6 flex items-start gap-3 rounded-2xl border border-primary/15 bg-surface-container-low p-5">
           <ShieldCheck aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-primary" />
