@@ -45,6 +45,11 @@ export const Scholars: CollectionConfig = {
       name: 'portrait',
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        components: {
+          Field: '/components/admin/CircularImageUploadField',
+        },
+      },
     },
     {
       name: 'locations',

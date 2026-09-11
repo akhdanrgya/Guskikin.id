@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Menu, Search, X } from 'lucide-react'
@@ -165,11 +166,17 @@ export const SiteHeader = ({ initialNow, isLatestLoading = false, latestNews }: 
 
       <div className="mx-auto flex h-20 max-w-container-max items-center justify-between px-gutter-mobile sm:px-gutter-tablet lg:px-gutter-desktop">
         <div className="flex items-center gap-space-lg">
-          <Link href="/" className="flex items-center gap-space-sm">
-            <div className="flex flex-col">
-              <span className="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">
-                guskikin.id
-              </span>
+          <Link href="/" className="flex items-center gap-space-sm" aria-label="guskikin.id — Beranda">
+            <div className="flex flex-col items-center">
+              <Image
+                alt="guskikin.id"
+                className="size-14 object-contain"
+                height={1254}
+                loading="eager"
+                sizes="56px"
+                src="/logo/GUSKIKIN.png"
+                width={1254}
+              />
               <span className="font-label-sm text-label-sm text-secondary font-medium tracking-wide">
                 Khazanah & Pemikiran
               </span>

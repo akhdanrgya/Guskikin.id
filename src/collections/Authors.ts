@@ -28,6 +28,11 @@ export const Authors: CollectionConfig = {
       name: 'avatar',
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        components: {
+          Field: '/components/admin/CircularImageUploadField',
+        },
+      },
     },
   ],
 }

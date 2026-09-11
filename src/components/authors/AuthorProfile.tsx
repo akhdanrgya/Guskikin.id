@@ -41,7 +41,7 @@ export function AuthorProfile({
               className="object-cover"
               height={36}
               sizes="36px"
-              src={avatar.sizes?.thumbnail?.url || avatar.url}
+              src={avatar.sizes?.avatar?.url || avatar.sizes?.thumbnail?.url || avatar.url}
               width={36}
             />
           ) : (
@@ -65,7 +65,7 @@ export function AuthorProfile({
             className="object-cover"
             height={48}
             sizes="48px"
-            src={avatar.sizes?.thumbnail?.url || avatar.url}
+            src={avatar.sizes?.avatar?.url || avatar.sizes?.thumbnail?.url || avatar.url}
             width={48}
           />
         ) : (

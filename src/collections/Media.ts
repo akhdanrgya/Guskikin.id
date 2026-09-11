@@ -18,6 +18,12 @@ export const Media: CollectionConfig = {
         position: 'centre',
       },
       {
+        name: 'avatar',
+        width: 512,
+        height: 512,
+        position: 'centre',
+      },
+      {
         name: 'card',
         width: 768,
         height: 576,
