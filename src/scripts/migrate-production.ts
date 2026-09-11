@@ -51,7 +51,7 @@ try {
     try {
       await client.query(
         `insert into payload_migrations (name, batch, updated_at, created_at)
-         select $1,
+         select $1::varchar,
            coalesce((select max(batch) from payload_migrations where batch > 0), 0) + 1,
            now(),
            now()
