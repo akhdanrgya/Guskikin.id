@@ -27,6 +27,7 @@ import { SiteSettings } from './globals/SiteSettings'
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
 import { Homepage } from './globals/Homepage'
+import { analyticsEndpoints } from './lib/analytics'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +36,10 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     components: {
-      beforeDashboard: ['/components/admin/AdminDashboardHero'],
+      beforeDashboard: [
+        '/components/admin/AnalyticsDashboard',
+        '/components/admin/AdminDashboardHero',
+      ],
       beforeLogin: ['/components/admin/AuthIntro'],
       beforeNavLinks: ['/components/admin/AdminNavBrand'],
       graphics: {
@@ -66,6 +70,7 @@ export default buildConfig({
     CommunityPosts,
     Pages,
   ],
+  endpoints: analyticsEndpoints,
   globals: [SiteSettings, Header, Footer, Homepage],
   i18n: {
     fallbackLanguage: 'id',

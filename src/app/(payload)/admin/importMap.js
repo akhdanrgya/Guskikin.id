@@ -24,6 +24,7 @@ import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { default as default_4d910c008953c11d8f9e439e7748915f } from '../../../components/admin/CircularImageUploadField'
 import { default as default_7be396d0766c6c490887ef074dd0ced4 } from '../../../components/admin/AdminIcon'
 import { default as default_8055bd7736744752729e7ab1604a1aa1 } from '../../../components/admin/AuthLogo'
+import { default as default_5f9e54d4ee206f524144ed947142dcf3 } from '../../../components/admin/AnalyticsDashboard'
 import { default as default_15ef46a6b2a1b616dc4cfedeac84ecc8 } from '../../../components/admin/AdminDashboardHero'
 import { default as default_be0283a400c16646fc25a15eec3a2887 } from '../../../components/admin/AuthIntro'
 import { default as default_3b9102a18ec996334808b39c4a5eac76 } from '../../../components/admin/AdminNavBrand'
@@ -58,6 +59,7 @@ export const importMap = {
   "/components/admin/CircularImageUploadField#default": default_4d910c008953c11d8f9e439e7748915f,
   "/components/admin/AdminIcon#default": default_7be396d0766c6c490887ef074dd0ced4,
   "/components/admin/AuthLogo#default": default_8055bd7736744752729e7ab1604a1aa1,
+  "/components/admin/AnalyticsDashboard#default": default_5f9e54d4ee206f524144ed947142dcf3,
   "/components/admin/AdminDashboardHero#default": default_15ef46a6b2a1b616dc4cfedeac84ecc8,
   "/components/admin/AuthIntro#default": default_be0283a400c16646fc25a15eec3a2887,
   "/components/admin/AdminNavBrand#default": default_3b9102a18ec996334808b39c4a5eac76,

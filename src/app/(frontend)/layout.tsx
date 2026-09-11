@@ -1,6 +1,7 @@
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { MotionFooter, MotionPage, MotionProvider } from '@/components/motion/SiteMotion'
+import { VisitorTracker } from '@/components/analytics/VisitorTracker'
 import { getLatestNews } from '@/lib/news'
 import { Suspense } from 'react'
 
@@ -24,6 +25,7 @@ export default function FrontendLayout({
 
   return (
     <MotionProvider>
+      <VisitorTracker />
       <div className="flex flex-col min-h-screen">
         <Suspense fallback={<SiteHeader initialNow={initialNow} isLatestLoading latestNews={null} />}>
           <HeaderWithLatestNews initialNow={initialNow} />
