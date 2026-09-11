@@ -1079,8 +1079,122 @@
       border-left: 0;
     }
 
-    .template-default .dashboard .collections {
-      --cols: 1;
-    }
+  .template-default .dashboard .collections {
+    --cols: 1;
+  }
+}
+}
+
+/* Dashboard readability scale */
+.template-default .dashboard {
+  font-size: 1rem;
+}
+
+.guskikin-analytics__eyebrow,
+.guskikin-dashboard-hero__eyebrow {
+  font-size: 0.8rem;
+}
+
+.guskikin-analytics__header h2 {
+  font-size: clamp(1.85rem, 3vw, 2.45rem);
+}
+
+.guskikin-analytics__header p,
+.guskikin-dashboard-hero__copy p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.guskikin-analytics__header button {
+  min-height: 2.65rem;
+  padding-inline: 1.15rem;
+  font-size: 0.84rem;
+}
+
+.guskikin-analytics__stats span,
+.guskikin-analytics__stats small {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.guskikin-analytics__stats strong {
+  font-size: clamp(2.35rem, 4.5vw, 3.35rem);
+}
+
+.guskikin-analytics__panel-heading h3 {
+  font-size: 1.15rem;
+}
+
+.guskikin-analytics__panel-heading span,
+.guskikin-analytics__bar-item > span,
+.guskikin-analytics__bar-item small {
+  font-size: 0.74rem;
+}
+
+.guskikin-analytics__list b {
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.guskikin-analytics__list small {
+  font-size: 0.73rem;
+}
+
+.guskikin-analytics__list strong {
+  font-size: 1.08rem;
+}
+
+.guskikin-analytics__notice,
+.guskikin-analytics__empty {
+  font-size: 0.84rem;
+}
+
+.guskikin-dashboard-hero__identity span,
+.guskikin-dashboard-hero__identity small {
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.guskikin-dashboard-hero__identity strong {
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.guskikin-dashboard-actions__index,
+.guskikin-dashboard-actions__arrow {
+  font-size: 1.12rem;
+}
+
+.guskikin-dashboard-actions__content strong {
+  font-size: 1.12rem;
+  line-height: 1.3;
+}
+
+.guskikin-dashboard-actions__content small {
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.template-default .dashboard .collections__label {
+  font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+}
+
+.template-default .dashboard .card__title {
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 600px) {
+  .guskikin-analytics__header p,
+  .guskikin-dashboard-hero__copy p {
+    font-size: 0.86rem;
+  }
+
+  .guskikin-dashboard-actions__content strong {
+    font-size: 1.05rem;
+  }
+
+  .guskikin-dashboard-actions__content small {
+    font-size: 0.76rem;
   }
 }
