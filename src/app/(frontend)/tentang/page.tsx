@@ -19,13 +19,13 @@ const editorialMembers = [
   {
     bio: 'Lahir di Kota Surabaya. Saat ini sedang menyelesaikan program doktoral di UIN Syarif Hidayatullah Jakarta di bidang Filantropi Islam.',
     name: 'Dr. (cand.) Much. Syahril Mubarok, M.Hum.',
-    photo: '/images/redaksi/syahril-placeholder.svg',
+    photo: '/images/redaksi/syahril.png',
     role: 'Founder guskikin.id',
   },
   {
     bio: 'Lahir di Kudus. Sebagai Ketua Alumni Pesantren Luhur Ciganjur, Amin merawat peradaban pesantren Ciganjur peninggalan Gus Dur.',
     name: 'H. Syaifullah Amin, M.Pd.',
-    photo: '/images/redaksi/amin-placeholder.svg',
+    photo: '/images/redaksi/syaifullah.png',
     role: 'Co-Founder',
   },
 ] as const
@@ -51,9 +51,6 @@ function EditorialPortrait({ name, photo }: { name: string; photo: string }) {
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-primary/35 to-transparent"
       />
-      <span className="absolute bottom-4 left-4 rounded-full border border-white/30 bg-primary/80 px-3 py-1 font-caption text-caption font-bold text-white backdrop-blur-sm">
-        Foto sementara
-      </span>
     </div>
   )
 }
